@@ -99,6 +99,12 @@ class ThirdScreen extends StatelessWidget {
                 height: 500,
                 width: 500,
               ),
+              TextButton(
+                onPressed: () {},
+                child: Text(
+                  'Home',
+                ),
+              ),
             ],
           ),
           desktop: Row(
