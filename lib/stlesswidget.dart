@@ -94,17 +94,22 @@ class ThirdScreen extends StatelessWidget {
           mobile: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Padding(padding: EdgeInsets.all(30)),
-              Container(
-                color: Colors.white,
-                height: 500,
-                width: 500,
-              ),
-              TextButton(
-                onPressed: () {},
-                child: Text(
-                  'Home',
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(padding: EdgeInsets.all(30)),
+                  Container(
+                    color: Colors.white,
+                    height: 500,
+                    width: 500,
+                  ),
+                  TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      'Home',
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

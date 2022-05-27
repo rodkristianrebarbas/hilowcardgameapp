@@ -528,6 +528,27 @@ class _DesktopModeState extends State<DesktopMode> {
                           xy++;
                           xy1++;
                           _controller.state?.controller?.reset();
+                          if ((xy > 52) && (xy1 > 52)) {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) => AlertDialog(
+                                title: const Text('Congratulations!!'),
+                                content: const Text(
+                                    'You guessed all the cards..Press OK to revert back to home page'),
+                                actions: <Widget>[
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.popUntil(context, (route) {
+                                        return route.settings.name == "/";
+                                      });
+                                      worldShuffle();
+                                    },
+                                    child: const Text('OK'),
+                                  ),
+                                ],
+                              ),
+                            );
+                          }
                         });
                       },
                       child: Text(
