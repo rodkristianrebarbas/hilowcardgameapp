@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'dart:math';
+import 'dart:core';
 
 class FlipCardDetails extends StatefulWidget {
   final String imagePath;

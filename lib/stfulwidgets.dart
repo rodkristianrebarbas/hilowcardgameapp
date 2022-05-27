@@ -95,10 +95,11 @@ class _MobileModeState extends State<MobileMode> {
                           _controller.state?.controller?.forward();
                           if (deckList[xy].number > deckList1[xy1].number) {
                             _counter++;
-                            store.add(deckList[xy].imgpath);
+                            if (_counter <= 5) {
+                              store.add(deckList[xy].imgpath);
+                            }
                           } else {
                             _counter = 0;
-                            store = [];
                             showDialog(
                               context: context,
                               builder: (BuildContext context) => AlertDialog(
@@ -112,6 +113,7 @@ class _MobileModeState extends State<MobileMode> {
                                         return route.settings.name == "/";
                                       });
                                       worldShuffle();
+                                      store = [];
                                     },
                                     child: const Text('OK'),
                                   ),
@@ -136,10 +138,11 @@ class _MobileModeState extends State<MobileMode> {
                           _controller.state?.controller?.forward();
                           if (deckList[xy].number == deckList1[xy1].number) {
                             _counter++;
-                            store.add(deckList[xy].imgpath);
+                            if (_counter <= 5) {
+                              store.add(deckList[xy].imgpath);
+                            }
                           } else {
                             _counter = 0;
-                            store = [];
                             showDialog(
                               context: context,
                               builder: (BuildContext context) => AlertDialog(
@@ -153,6 +156,7 @@ class _MobileModeState extends State<MobileMode> {
                                         return route.settings.name == "/";
                                       });
                                       worldShuffle();
+                                      store = [];
                                     },
                                     child: const Text('OK'),
                                   ),
@@ -177,10 +181,11 @@ class _MobileModeState extends State<MobileMode> {
                           _controller.state?.controller?.forward();
                           if (deckList[xy].number < deckList1[xy1].number) {
                             _counter++;
-                            store.add(deckList[xy].imgpath);
+                            if (_counter <= 5) {
+                              store.add(deckList[xy].imgpath);
+                            }
                           } else {
                             _counter = 0;
-                            store = [];
                             showDialog(
                               context: context,
                               builder: (BuildContext context) => AlertDialog(
@@ -194,6 +199,7 @@ class _MobileModeState extends State<MobileMode> {
                                         return route.settings.name == "/";
                                       });
                                       worldShuffle();
+                                      store = [];
                                     },
                                     child: const Text('OK'),
                                   ),
@@ -218,6 +224,27 @@ class _MobileModeState extends State<MobileMode> {
                           xy++;
                           xy1++;
                           _controller.state?.controller?.reset();
+                          if ((xy > 52) && (xy1 > 52)) {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) => AlertDialog(
+                                title: const Text('Congratulations!!'),
+                                content: const Text(
+                                    'You guessed all the cards..Press OK to revert back to home page'),
+                                actions: <Widget>[
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.popUntil(context, (route) {
+                                        return route.settings.name == "/";
+                                      });
+                                      worldShuffle();
+                                    },
+                                    child: const Text('OK'),
+                                  ),
+                                ],
+                              ),
+                            );
+                          }
                         });
                       },
                       child: Text(
@@ -405,10 +432,11 @@ class _DesktopModeState extends State<DesktopMode> {
                           _controller.state?.controller?.forward();
                           if (deckList[xy].number > deckList1[xy1].number) {
                             _counter++;
-                            store.add(deckList[xy].imgpath);
+                            if (_counter <= 5) {
+                              store.add(deckList[xy].imgpath);
+                            }
                           } else {
                             _counter = 0;
-                            store = [];
                             showDialog(
                               context: context,
                               builder: (BuildContext context) => AlertDialog(
@@ -422,6 +450,7 @@ class _DesktopModeState extends State<DesktopMode> {
                                         return route.settings.name == "/";
                                       });
                                       worldShuffle();
+                                      store = [];
                                     },
                                     child: const Text('OK'),
                                   ),
@@ -446,10 +475,11 @@ class _DesktopModeState extends State<DesktopMode> {
                           _controller.state?.controller?.forward();
                           if (deckList[xy].number == deckList1[xy1].number) {
                             _counter++;
-                            store.add(deckList[xy].imgpath);
+                            if (_counter <= 5) {
+                              store.add(deckList[xy].imgpath);
+                            }
                           } else {
                             _counter = 0;
-                            store = [];
                             showDialog(
                               context: context,
                               builder: (BuildContext context) => AlertDialog(
@@ -463,6 +493,7 @@ class _DesktopModeState extends State<DesktopMode> {
                                         return route.settings.name == "/";
                                       });
                                       worldShuffle();
+                                      store = [];
                                     },
                                     child: const Text('OK'),
                                   ),
@@ -487,10 +518,11 @@ class _DesktopModeState extends State<DesktopMode> {
                           _controller.state?.controller?.forward();
                           if (deckList[xy].number < deckList1[xy1].number) {
                             _counter++;
-                            store.add(deckList[xy].imgpath);
+                            if (_counter <= 5) {
+                              store.add(deckList[xy].imgpath);
+                            }
                           } else {
                             _counter = 0;
-                            store = [];
                             showDialog(
                               context: context,
                               builder: (BuildContext context) => AlertDialog(
@@ -504,6 +536,7 @@ class _DesktopModeState extends State<DesktopMode> {
                                         return route.settings.name == "/";
                                       });
                                       worldShuffle();
+                                      store = [];
                                     },
                                     child: const Text('OK'),
                                   ),
