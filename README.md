@@ -1,3 +1,9 @@
+My first attempt in making HI/LOW Card Game application using Flutter
+
+Feel free to download the source code and study it....enjoy:)
+
+-Kurisu/Kryss
+
 # hilowcardgameapp
 
 A new Flutter project.
