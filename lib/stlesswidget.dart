@@ -92,6 +92,7 @@ class ThirdScreen extends StatelessWidget {
       body: SafeArea(
         child: ResponsiveWidget(
           mobile: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(padding: EdgeInsets.all(30)),
               Container(
