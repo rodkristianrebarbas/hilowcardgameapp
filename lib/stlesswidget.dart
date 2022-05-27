@@ -92,10 +92,17 @@ class ThirdScreen extends StatelessWidget {
       body: SafeArea(
         child: ResponsiveWidget(
           mobile: Column(
-            children: const [],
+            children: [
+              Padding(padding: EdgeInsets.all(30)),
+              Container(
+                color: Colors.white,
+                height: 500,
+                width: 500,
+              ),
+            ],
           ),
           desktop: Row(
-            children: const [],
+            children: [],
           ),
         ),
       ),
