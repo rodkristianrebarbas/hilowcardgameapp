@@ -163,7 +163,7 @@ class LandscapeMode extends StatelessWidget {
         child: Textbutton1(),
       ),
       SizedBox(width: 12.50),
-      Expanded(
+      Expanded(aaaa
         child: Textbutton2(),
       ),
     ]);
