@@ -76,7 +76,6 @@ class SecondScreen extends StatelessWidget {
         child: ResponsiveWidget(
           mobile: Expanded(
             child: MobileMode(),
-            flex: 5,
           ),
           desktop: Expanded(
             child: DesktopMode(),
