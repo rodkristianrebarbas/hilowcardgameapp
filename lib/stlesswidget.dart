@@ -110,10 +110,12 @@ class ThirdScreen extends StatelessWidget {
                       width: 500,
                     ),
                   ),
-                  TextButton(
-                    onPressed: () {},
-                    child: const Text(
-                      'Home',
+                  Expanded(
+                    child: TextButton(
+                      onPressed: () {},
+                      child: const Text(
+                        'Home',
+                      ),
                     ),
                   ),
                 ],
