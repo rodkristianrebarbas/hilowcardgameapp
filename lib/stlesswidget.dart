@@ -103,10 +103,12 @@ class ThirdScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Padding(padding: EdgeInsets.all(30)),
-                  Container(
-                    color: Colors.white,
-                    height: 500,
-                    width: 500,
+                  Expanded(
+                    child: Container(
+                      color: Colors.white,
+                      height: 500,
+                      width: 500,
+                    ),
                   ),
                   TextButton(
                     onPressed: () {},
