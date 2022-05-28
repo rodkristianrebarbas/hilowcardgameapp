@@ -108,6 +108,7 @@ class ThirdScreen extends StatelessWidget {
                       color: Colors.white,
                       height: 500,
                       width: 500,
+                      child: const Text('Hello World'),
                     ),
                   ),
                   Expanded(
