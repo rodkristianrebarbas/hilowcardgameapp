@@ -30,6 +30,28 @@ class _FlipCardDetailsState extends State<FlipCardDetails> {
   }
 }
 
+class FlipCardDetailsMobile extends StatefulWidget {
+  const FlipCardDetailsMobile({Key? key, required this.imagePath}) : super(key: key);
+  final String imagePath;
+
+  @override
+  State<FlipCardDetailsMobile> createState() => _FlipCardDetailsMobileState();
+}
+
+class _FlipCardDetailsMobileState extends State<FlipCardDetailsMobile> {
+  @override
+  Widget build(BuildContext context) {
+    return Image.asset(
+      widget.imagePath,
+      key: ValueKey<String>(widget.imagePath),
+      height: 160,
+      width:115,
+      fit: BoxFit.fill,
+    );
+  }
+}
+
+
 class Suits {
   final int keys;
   final String imgpath;
@@ -211,9 +233,9 @@ void deckListShuffleP1() {
 }
 
 void deckListShuffleCPU() {
-  int index = 0;
+  int indx = 0;
   deckList1.shuffle();
-  store.add(deckList1[index].imgpath);
+  store.add(deckList1[indx].imgpath);
   store = [];
 }
 

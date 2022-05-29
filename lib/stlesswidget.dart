@@ -74,12 +74,10 @@ class SecondScreen extends StatelessWidget {
     return Scaffold(
       body: const SafeArea(
         child: ResponsiveWidget(
-          mobile: Expanded(
-            child: MobileMode(),
-          ),
-          desktop: Expanded(
-            child: DesktopMode(),
-          ),
+          mobile:
+            MobileMode(),
+          desktop:
+            DesktopMode(),
         ),
       ),
       backgroundColor: Colors.green[200],
@@ -220,7 +218,6 @@ class PortraitMode extends StatelessWidget {
 class Flipcard extends StatefulWidget {
   final String imgpath;
   const Flipcard({required Key key, required this.imgpath}) : super(key: key);
-  final int xy = 0;
 
   @override
   State<Flipcard> createState() => _FlipcardState();
@@ -238,3 +235,25 @@ class _FlipcardState extends State<Flipcard> {
     );
   }
 }
+
+class FlipcardMobile extends StatefulWidget {
+  const FlipcardMobile({Key? key, required this.imagpath}) : super(key: key);
+  final String imagpath;
+
+  @override
+  State<FlipcardMobile> createState() => _FlipcardMobileState();
+}
+
+class _FlipcardMobileState extends State<FlipcardMobile> {
+  @override
+  Widget build(BuildContext context) {
+    return Image.asset(
+      widget.imagpath,
+      key: ValueKey<String>(widget.imagpath),
+      height: 100,
+      width: 50,
+      fit: BoxFit.fill,
+    );
+  }
+}
+
