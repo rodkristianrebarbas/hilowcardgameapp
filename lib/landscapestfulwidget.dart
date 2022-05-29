@@ -262,33 +262,29 @@ class _DesktopModeState extends State<DesktopMode> {
               child: Container(
                 color: Colors.white,
                 height: 250,
-                width: 900,
-                child: Scrollbar(
-                  controller: controller,
-                  isAlwaysShown: true,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          controller: controller,
-                          itemBuilder: ((BuildContext context, int index) {
-                            return Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: <Widget>[
-                                Image.network(
-                                  store[index],
-                                  height: 270,
-                                  width: 175,
-                                ),
-                              ],
-                            );
-                          }),
-                          itemCount: store.length,
-                        ),
+                width: 875,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: ListView.builder(
+                        //scrollDirection: Axis.horizontal,
+                        //controller: controller,
+                        itemBuilder: ((BuildContext context, int index) {
+                          return Row(
+                            children: <Widget>[
+                              const Padding(padding: EdgeInsets.all(1.0)),
+                              Image.network(
+                                store[index],
+                                height: 270,
+                                width: 175,
+                              ),
+                            ],
+                          );
+                        }),
+                        itemCount: store.length,
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),
