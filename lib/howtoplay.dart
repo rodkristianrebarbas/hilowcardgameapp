@@ -21,7 +21,7 @@ class HowToPlay extends StatelessWidget {
                     width: 380,
                     child: SingleChildScrollView(
                       child: Column(
-                        children: const[
+                        children: const [
                           Padding(padding: EdgeInsets.all(20.0)),
                           Text(
                             'How To Play:',
@@ -75,21 +75,31 @@ class HowToPlay extends StatelessWidget {
             ],
           ),
           desktop: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Padding(padding: EdgeInsets.only(top: 60)),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
                     color: Colors.white,
-                    height: 380,
-                    width: 380,
+                    height: 500,
+                    width: 500,
                     child: SingleChildScrollView(
                       child: Column(
-                        children: const[
+                        children: const [
                           Padding(padding: EdgeInsets.all(20.0)),
                           Text(
                             'How To Play:',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontFamily: 'IndieFlower',
+                              fontSize: 40,
+                              color: Colors.black,
+                            ),
+                          ),
+                          Padding(padding: EdgeInsets.all(20.0)),
+                          Text(
+                            'To play the game, choose either three of the buttons to guess whether the next card is high, equal or low.',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontFamily: 'IndieFlower',
@@ -97,23 +107,13 @@ class HowToPlay extends StatelessWidget {
                               color: Colors.black,
                             ),
                           ),
-                          Padding(padding: EdgeInsets.all(15.0)),
-                          Text(
-                            'To play the game, choose either three of the buttons to guess whether the next card is high, equal or low.',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontFamily: 'IndieFlower',
-                              fontSize: 20,
-                              color: Colors.black,
-                            ),
-                          ),
-                          Padding(padding: EdgeInsets.all(15.0)),
+                          Padding(padding: EdgeInsets.all(20.0)),
                           Text(
                             'After that, click or press next button to continue the game until the game is over by not guessing it.',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontFamily: 'IndieFlower',
-                              fontSize: 20,
+                              fontSize: 30,
                               color: Colors.black,
                             ),
                           ),
@@ -132,7 +132,7 @@ class HowToPlay extends StatelessWidget {
                   'Home',
                   style: TextStyle(
                     fontFamily: 'IndieFlower',
-                    fontSize: 30,
+                    fontSize: 40,
                     color: Colors.black,
                   ),
                 ),
