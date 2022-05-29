@@ -2,6 +2,8 @@ My first attempt in making HI/LOW Card Game application using Flutter
 
 I create web and mobile versions of it using Layout Builder
 
+For mobile version, I used Pixel 2 API 30 emulator to execute the app and debugging it
+
 Feel free to download the source code and study it....enjoy:)
 
 -Kurisu/Kryss
