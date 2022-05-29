@@ -2,6 +2,7 @@ import 'portraitstfulwidget.dart';
 import 'package:flutter/material.dart';
 import 'package:hilowcardgameapp/responsivehelper.dart';
 import 'landscapestfulwidget.dart';
+import 'howtoplay.dart';
 
 class Textbutton2 extends StatelessWidget {
   const Textbutton2({
@@ -13,7 +14,7 @@ class Textbutton2 extends StatelessWidget {
     return TextButton(
       onPressed: () {
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const ThirdScreen()));
+            MaterialPageRoute(builder: (context) => const HowToPlay()));
       },
       child: const Text(
         'How to Play',
@@ -78,52 +79,6 @@ class SecondScreen extends StatelessWidget {
             MobileMode(),
           desktop:
             DesktopMode(),
-        ),
-      ),
-      backgroundColor: Colors.green[200],
-    );
-  }
-}
-
-class ThirdScreen extends StatelessWidget {
-  const ThirdScreen({key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: ResponsiveWidget(
-          mobile: Column(
-            children: [
-              const Padding(padding: EdgeInsets.only(top: 60)),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                    Container(
-                      color: Colors.white,
-                      height: 380,
-                      width: 380,
-                      child: const Text('Hello World'),
-                    ),
-                ],
-              ),
-              const Padding(padding: EdgeInsets.only(top: 30)),
-              TextButton(
-                onPressed: () {},
-                child: const Text(
-                  'Home',
-                  style: TextStyle(
-                    fontFamily: 'IndieFlower',
-                    fontSize: 30,
-                    color: Colors.black,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          desktop: Row(
-            children: const [],
-          ),
         ),
       ),
       backgroundColor: Colors.green[200],
