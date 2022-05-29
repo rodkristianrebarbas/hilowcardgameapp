@@ -94,29 +94,30 @@ class ThirdScreen extends StatelessWidget {
       body: SafeArea(
         child: ResponsiveWidget(
           mobile: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              const Padding(padding: EdgeInsets.only(top: 60)),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Padding(padding: EdgeInsets.all(30)),
-                  Expanded(
-                    child: Container(
+                    Container(
                       color: Colors.white,
-                      height: 500,
-                      width: 500,
+                      height: 380,
+                      width: 380,
                       child: const Text('Hello World'),
                     ),
-                  ),
-                  Expanded(
-                    child: TextButton(
-                      onPressed: () {},
-                      child: const Text(
-                        'Home',
-                      ),
-                    ),
-                  ),
                 ],
+              ),
+              const Padding(padding: EdgeInsets.only(top: 30)),
+              TextButton(
+                onPressed: () {},
+                child: const Text(
+                  'Home',
+                  style: TextStyle(
+                    fontFamily: 'IndieFlower',
+                    fontSize: 30,
+                    color: Colors.black,
+                  ),
+                ),
               ),
             ],
           ),
