@@ -43,7 +43,7 @@ class _MobileModeState extends State<MobileMode> {
                 direction: Axis.vertical,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     'Deck',
                     style: TextStyle(
                       fontFamily: 'IndieFlower',
