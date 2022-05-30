@@ -118,7 +118,9 @@ class _DesktopModeState extends State<DesktopMode> {
                           onPressed: () {
                             setState(() {
                               _controller.state?.controller?.forward();
-                              if (deckList[xy].number > deckList[xy1].number) {
+                              int guesscard = deckList[xy].number;
+                              int previouscard = deckList[xy1].number;
+                              if (guesscard > previouscard) {
                                 _counter++;
                                 if (_counter <= 5) {
                                   store.add(deckList[xy1].imgpath);
@@ -162,7 +164,9 @@ class _DesktopModeState extends State<DesktopMode> {
                           onPressed: () {
                             setState(() {
                               _controller.state?.controller?.forward();
-                              if (deckList[xy].number == deckList[xy1].number) {
+                              int guesscard = deckList[xy].number;
+                              int previouscard = deckList[xy1].number;
+                              if (guesscard == previouscard) {
                                 _counter++;
                                 if (_counter <= 5) {
                                   store.add(deckList[xy1].imgpath);
@@ -206,7 +210,9 @@ class _DesktopModeState extends State<DesktopMode> {
                           onPressed: () {
                             setState(() {
                               _controller.state?.controller?.forward();
-                              if (deckList[xy].number > deckList[xy1].number) {
+                              int guesscard = deckList[xy].number;
+                              int previouscard = deckList[xy1].number;
+                              if (guesscard < previouscard) {
                                 _counter++;
                                 if (_counter <= 5) {
                                   store.add(deckList[xy1].imgpath);

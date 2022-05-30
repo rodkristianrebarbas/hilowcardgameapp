@@ -17,10 +17,10 @@ class MobileMode extends StatefulWidget {
 class _MobileModeState extends State<MobileMode> {
   final ScrollController controller = ScrollController();
   int xy = 0;
-  int get imagePath => deckList[xy].keys;
+  int get imagePath => deckList[xy].number;
   late FlipCardController _controller;
-  int xy1 = 0;
-  int get imagpath => deckList1[xy1].keys;
+  int xy1 = 1;
+  int get imagpath => deckList1[xy1].number;
   int _counter = 0;
 
   @override
