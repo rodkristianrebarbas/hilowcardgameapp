@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hilowcardgameapp/responsivehelper.dart';
 import 'responsivehelper.dart';
 import 'stlesswidget.dart';
-import 'package:flutter/gestures.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -46,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
-
+/*
 class MyCustomScrollBehavior extends MaterialScrollBehavior {
   // Override behavior methods and getters like dragDevices
   @override
@@ -55,3 +54,4 @@ class MyCustomScrollBehavior extends MaterialScrollBehavior {
         PointerDeviceKind.mouse,
       };
 }
+*/
