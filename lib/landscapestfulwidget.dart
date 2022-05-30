@@ -16,11 +16,11 @@ class DesktopMode extends StatefulWidget {
 
 class _DesktopModeState extends State<DesktopMode> {
   int xy = 0;
-  int get imagePath => deckList[xy].keys;
+  int get imagePath => deckList[xy].number;
   late FlipCardController _controller;
   int _counter = 0;
-  int xy1 = 0;
-  int get imgpath => deckList1[xy1].keys;
+  int xy1 = 1;
+  int get imgpath => deckList[xy1].number;
 
   @override
   void initState() {
@@ -34,6 +34,7 @@ class _DesktopModeState extends State<DesktopMode> {
       direction: Axis.horizontal,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        const Padding(padding: EdgeInsets.all(5)),
         Expanded(
           flex: 1,
           child: Flex(
@@ -61,7 +62,7 @@ class _DesktopModeState extends State<DesktopMode> {
                         height: 250,
                         width: 175,
                         child: Flipcard(
-                          imgpath: deckList1[xy1].imgpath,
+                          imgpath: deckList1[xy].imgpath,
                           key: ValueKey<int>(imgpath),
                         ),
                       ),
@@ -81,8 +82,8 @@ class _DesktopModeState extends State<DesktopMode> {
                             'assets/images/playing-card-back.jpg',
                             fit: BoxFit.fill,
                           ),
-                          back: FlipCardDetailsMobile(
-                            imagePath: deckList[xy].imgpath,
+                          back: FlipCardDetails(
+                            imagePath: deckList[xy1].imgpath,
                             key: ValueKey<int>(imagePath),
                           ),
                         ),
@@ -117,10 +118,10 @@ class _DesktopModeState extends State<DesktopMode> {
                           onPressed: () {
                             setState(() {
                               _controller.state?.controller?.forward();
-                              if (deckList[xy].number > deckList1[xy1].number) {
+                              if (deckList[xy].number > deckList[xy1].number) {
                                 _counter++;
                                 if (_counter <= 5) {
-                                  store.add(deckList[xy].imgpath);
+                                  store.add(deckList[xy1].imgpath);
                                 }
                               } else {
                                 _counter = 0;
@@ -161,11 +162,10 @@ class _DesktopModeState extends State<DesktopMode> {
                           onPressed: () {
                             setState(() {
                               _controller.state?.controller?.forward();
-                              if (deckList[xy].number ==
-                                  deckList1[xy1].number) {
+                              if (deckList[xy].number == deckList[xy1].number) {
                                 _counter++;
                                 if (_counter <= 5) {
-                                  store.add(deckList[xy].imgpath);
+                                  store.add(deckList[xy1].imgpath);
                                 }
                               } else {
                                 _counter = 0;
@@ -206,10 +206,10 @@ class _DesktopModeState extends State<DesktopMode> {
                           onPressed: () {
                             setState(() {
                               _controller.state?.controller?.forward();
-                              if (deckList[xy].number < deckList1[xy1].number) {
+                              if (deckList[xy].number > deckList[xy1].number) {
                                 _counter++;
                                 if (_counter <= 5) {
-                                  store.add(deckList[xy].imgpath);
+                                  store.add(deckList[xy1].imgpath);
                                 }
                               } else {
                                 _counter = 0;
@@ -252,7 +252,7 @@ class _DesktopModeState extends State<DesktopMode> {
                               xy++;
                               xy1++;
                               _controller.state?.controller?.reset();
-                              if ((xy > 52) && (xy1 > 52)) {
+                              if ((xy == 51) || (xy1 == 51)) {
                                 showDialog(
                                   context: context,
                                   builder: (BuildContext context) =>
@@ -303,34 +303,29 @@ class _DesktopModeState extends State<DesktopMode> {
               const Padding(padding: EdgeInsets.all(10)),
               Expanded(
                 flex: 1,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(5),
-                  child: Container(
-                    color: Colors.grey[400],
-                    height: 250,
-                    width: 875,
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: ListView.builder(
-                            itemBuilder: ((BuildContext context, int index) {
-                              return Row(
-                                children: <Widget>[
-                                  const Padding(padding: EdgeInsets.all(1.0)),
-                                  Image.asset(
-                                    store[index],
-                                    height: 250,
-                                    width: 175,
-                                  ),
-                                ],
-                              );
-                            }),
-                            itemCount: store.length,
-                          ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(5),
+                      child: Container(
+                        color: Colors.grey[400],
+                        height: 250,
+                        width: 875,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: ((BuildContext context, int index) {
+                            return Image.asset(
+                              store[index],
+                              height: 250,
+                              width: 175,
+                            );
+                          }),
+                          itemCount: store.length,
                         ),
-                      ],
+                      ),
                     ),
-                  ),
+                  ],
                 ),
               ),
               const Padding(padding: EdgeInsets.all(15)),

@@ -31,7 +31,8 @@ class _FlipCardDetailsState extends State<FlipCardDetails> {
 }
 
 class FlipCardDetailsMobile extends StatefulWidget {
-  const FlipCardDetailsMobile({Key? key, required this.imagePath}) : super(key: key);
+  const FlipCardDetailsMobile({Key? key, required this.imagePath})
+      : super(key: key);
   final String imagePath;
 
   @override
@@ -45,12 +46,11 @@ class _FlipCardDetailsMobileState extends State<FlipCardDetailsMobile> {
       widget.imagePath,
       key: ValueKey<String>(widget.imagePath),
       height: 160,
-      width:115,
+      width: 115,
       fit: BoxFit.fill,
     );
   }
 }
-
 
 class Suits {
   final int keys;
