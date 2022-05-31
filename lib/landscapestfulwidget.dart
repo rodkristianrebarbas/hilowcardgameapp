@@ -16,11 +16,11 @@ class DesktopMode extends StatefulWidget {
 
 class _DesktopModeState extends State<DesktopMode> {
   int xy = 0;
-  int get imagePath => deckList[xy].number;
+  int get imagePath => deckList[xy].keys;
   late FlipCardController _controller;
   int _counter = 0;
-  int xy1 = 1;
-  int get imgpath => deckList[xy1].number;
+  int xy1 = 0;
+  int get imgpath => deckList1[xy1].keys;
 
   @override
   void initState() {
@@ -62,7 +62,7 @@ class _DesktopModeState extends State<DesktopMode> {
                         height: 250,
                         width: 175,
                         child: Flipcard(
-                          imgpath: deckList1[xy].imgpath,
+                          imgpath: deckList[xy].imgpath,
                           key: ValueKey<int>(imgpath),
                         ),
                       ),
@@ -83,7 +83,7 @@ class _DesktopModeState extends State<DesktopMode> {
                             fit: BoxFit.fill,
                           ),
                           back: FlipCardDetails(
-                            imagePath: deckList[xy1].imgpath,
+                            imagePath: deckList1[xy1].imgpath,
                             key: ValueKey<int>(imagePath),
                           ),
                         ),
@@ -118,12 +118,10 @@ class _DesktopModeState extends State<DesktopMode> {
                           onPressed: () {
                             setState(() {
                               _controller.state?.controller?.forward();
-                              int guesscard = deckList[xy].number;
-                              int previouscard = deckList[xy1].number;
-                              if (guesscard > previouscard) {
+                              if (deckList1[xy1].number > deckList[xy].number) {
                                 _counter++;
                                 if (_counter <= 5) {
-                                  store.add(deckList[xy1].imgpath);
+                                  store.add(deckList1[xy1].imgpath);
                                 }
                               } else {
                                 _counter = 0;
@@ -164,12 +162,11 @@ class _DesktopModeState extends State<DesktopMode> {
                           onPressed: () {
                             setState(() {
                               _controller.state?.controller?.forward();
-                              int guesscard = deckList[xy].number;
-                              int previouscard = deckList[xy1].number;
-                              if (guesscard == previouscard) {
+                              if (deckList1[xy1].number ==
+                                  deckList[xy].number) {
                                 _counter++;
                                 if (_counter <= 5) {
-                                  store.add(deckList[xy1].imgpath);
+                                  store.add(deckList1[xy1].imgpath);
                                 }
                               } else {
                                 _counter = 0;
@@ -210,12 +207,10 @@ class _DesktopModeState extends State<DesktopMode> {
                           onPressed: () {
                             setState(() {
                               _controller.state?.controller?.forward();
-                              int guesscard = deckList[xy].number;
-                              int previouscard = deckList[xy1].number;
-                              if (guesscard < previouscard) {
+                              if (deckList1[xy1].number < deckList[xy].number) {
                                 _counter++;
                                 if (_counter <= 5) {
-                                  store.add(deckList[xy1].imgpath);
+                                  store.add(deckList1[xy1].imgpath);
                                 }
                               } else {
                                 _counter = 0;
@@ -258,7 +253,7 @@ class _DesktopModeState extends State<DesktopMode> {
                               xy++;
                               xy1++;
                               _controller.state?.controller?.reset();
-                              if ((xy == 51) || (xy1 == 51)) {
+                              if ((_counter == 52) && (_counter == 52)) {
                                 showDialog(
                                   context: context,
                                   builder: (BuildContext context) =>
