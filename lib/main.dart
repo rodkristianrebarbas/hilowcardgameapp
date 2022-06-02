@@ -11,8 +11,6 @@ void main() {
   runApp(const MyApp());
   addSuitsP1();
   deckListShuffleP1();
-  addSuitsCPU();
-  deckListShuffleCPU();
 }
 
 class MyApp extends StatelessWidget {

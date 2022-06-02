@@ -19,8 +19,22 @@ class _DesktopModeState extends State<DesktopMode> {
   int get imagePath => deckList[xy].keys;
   late FlipCardController _controller;
   int _counter = 0;
-  int xy1 = 0;
-  int get imgpath => deckList1[xy1].keys;
+  int xy1 = 1;
+  int get imgpath => deckList[xy1].keys;
+
+  String hold1 = "cardSlot",
+      hold2 = "cardSlot",
+      hold3 = "cardSlot",
+      hold4 = "cardSlot",
+      hold5 = "cardSlot";
+
+  void pushCard() {
+    hold5 = hold4;
+    hold4 = hold3;
+    hold3 = hold2;
+    hold2 = hold1;
+    hold1 = deckList[xy1].imgpath;
+  }
 
   @override
   void initState() {
@@ -31,7 +45,7 @@ class _DesktopModeState extends State<DesktopMode> {
   @override
   Widget build(BuildContext context) {
     return Flex(
-      direction: Axis.horizontal,
+      direction: Axis.vertical,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const Padding(padding: EdgeInsets.all(5)),
@@ -62,7 +76,7 @@ class _DesktopModeState extends State<DesktopMode> {
                         height: 250,
                         width: 175,
                         child: Flipcard(
-                          imgpath: deckList[xy].imgpath,
+                          imgpath: 'assets/images/${deckList[xy].imgpath}.png',
                           key: ValueKey<int>(imgpath),
                         ),
                       ),
@@ -83,7 +97,8 @@ class _DesktopModeState extends State<DesktopMode> {
                             fit: BoxFit.fill,
                           ),
                           back: FlipCardDetails(
-                            imagePath: deckList1[xy1].imgpath,
+                            imagePath:
+                                'assets/images/${deckList[xy1].imgpath}.png',
                             key: ValueKey<int>(imagePath),
                           ),
                         ),
@@ -118,21 +133,36 @@ class _DesktopModeState extends State<DesktopMode> {
                           onPressed: () {
                             setState(() {
                               _controller.state?.controller?.forward();
-                              if (deckList1[xy1].number > deckList[xy].number) {
+                              if (deckList[xy1].number > deckList[xy].number) {
                                 _counter++;
                                 if (_counter <= 5) {
-                                  store.add(deckList1[xy1].imgpath);
+                                  //store.add(deckList[xy1].imgpath);
+                                  pushCard();
                                 }
                               } else {
                                 _counter = 0;
                                 showDialog(
+                                  barrierDismissible: false,
                                   context: context,
                                   builder: (BuildContext context) =>
                                       AlertDialog(
-                                    title: const Text('Owwww.....Not Guessed'),
+                                    title: const Text(
+                                        'Owwww.....Not Guessed, Play Again?'),
                                     content: const Text(
                                         'Game Over!.....Press OK to revert back to home page'),
                                     actions: <Widget>[
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const SecondScreen()));
+                                          worldShuffle();
+                                          store = [];
+                                        },
+                                        child: const Text('Play Again'),
+                                      ),
                                       TextButton(
                                         onPressed: () {
                                           Navigator.popUntil(context, (route) {
@@ -162,11 +192,11 @@ class _DesktopModeState extends State<DesktopMode> {
                           onPressed: () {
                             setState(() {
                               _controller.state?.controller?.forward();
-                              if (deckList1[xy1].number ==
-                                  deckList[xy].number) {
+                              if (deckList[xy1].number == deckList[xy].number) {
                                 _counter++;
                                 if (_counter <= 5) {
-                                  store.add(deckList1[xy1].imgpath);
+                                  //store.add(deckList[xy1].imgpath);
+                                  pushCard();
                                 }
                               } else {
                                 _counter = 0;
@@ -174,10 +204,23 @@ class _DesktopModeState extends State<DesktopMode> {
                                   context: context,
                                   builder: (BuildContext context) =>
                                       AlertDialog(
-                                    title: const Text('Owwww.....Not Guessed'),
+                                    title: const Text(
+                                        'Owwww.....Not Guessed, Play Again?'),
                                     content: const Text(
                                         'Game Over!.....Press OK to revert back to home page'),
                                     actions: <Widget>[
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const SecondScreen()));
+                                          worldShuffle();
+                                          store = [];
+                                        },
+                                        child: const Text('Play Again'),
+                                      ),
                                       TextButton(
                                         onPressed: () {
                                           Navigator.popUntil(context, (route) {
@@ -207,21 +250,36 @@ class _DesktopModeState extends State<DesktopMode> {
                           onPressed: () {
                             setState(() {
                               _controller.state?.controller?.forward();
-                              if (deckList1[xy1].number < deckList[xy].number) {
+                              if (deckList[xy1].number < deckList[xy].number) {
                                 _counter++;
                                 if (_counter <= 5) {
-                                  store.add(deckList1[xy1].imgpath);
+                                  //store.add(deckList[xy1].imgpath);
+                                  pushCard();
                                 }
                               } else {
                                 _counter = 0;
                                 showDialog(
+                                  barrierDismissible: false,
                                   context: context,
                                   builder: (BuildContext context) =>
                                       AlertDialog(
-                                    title: const Text('Owwww.....Not Guessed'),
+                                    title: const Text(
+                                        'Owwww.....Not Guessed, Play Again?'),
                                     content: const Text(
                                         'Game Over!.....Press OK to revert back to home page'),
                                     actions: <Widget>[
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const SecondScreen()));
+                                          worldShuffle();
+                                          store = [];
+                                        },
+                                        child: const Text('Play Again'),
+                                      ),
                                       TextButton(
                                         onPressed: () {
                                           Navigator.popUntil(context, (route) {
@@ -253,15 +311,28 @@ class _DesktopModeState extends State<DesktopMode> {
                               xy++;
                               xy1++;
                               _controller.state?.controller?.reset();
-                              if ((_counter == 52) && (_counter == 52)) {
+                              if ((_counter == 52)) {
                                 showDialog(
                                   context: context,
+                                  barrierDismissible: false,
                                   builder: (BuildContext context) =>
                                       AlertDialog(
                                     title: const Text('Congratulations!!'),
                                     content: const Text(
                                         'You guessed all the cards..Press OK to revert back to home page'),
                                     actions: <Widget>[
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const SecondScreen()));
+                                          worldShuffle();
+                                          store = [];
+                                        },
+                                        child: const Text('Play Again'),
+                                      ),
                                       TextButton(
                                         onPressed: () {
                                           Navigator.popUntil(context, (route) {
@@ -312,17 +383,72 @@ class _DesktopModeState extends State<DesktopMode> {
                       child: Container(
                         color: Colors.grey[400],
                         height: 250,
-                        width: 875,
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: ((BuildContext context, int index) {
-                            return Image.asset(
-                              store[index],
-                              height: 250,
-                              width: 175,
-                            );
-                          }),
-                          itemCount: store.length,
+                        width: 175,
+                        child: Image.asset(
+                          'assets/images/$hold1.png',
+                          height: 250,
+                          width: 175,
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    ),
+                    const Padding(padding: EdgeInsets.all(5)),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(5),
+                      child: Container(
+                        color: Colors.grey[400],
+                        height: 250,
+                        width: 175,
+                        child: Image.asset(
+                          'assets/images/$hold2.png',
+                          height: 250,
+                          width: 175,
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    ),
+                    const Padding(padding: EdgeInsets.all(5)),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(5),
+                      child: Container(
+                        color: Colors.grey[400],
+                        height: 250,
+                        width: 175,
+                        child: Image.asset(
+                          'assets/images/$hold3.png',
+                          height: 250,
+                          width: 175,
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    ),
+                    const Padding(padding: EdgeInsets.all(5)),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(5),
+                      child: Container(
+                        color: Colors.grey[400],
+                        height: 250,
+                        width: 175,
+                        child: Image.asset(
+                          'assets/images/$hold4.png',
+                          height: 250,
+                          width: 175,
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    ),
+                    const Padding(padding: EdgeInsets.all(5)),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(5),
+                      child: Container(
+                        color: Colors.grey[400],
+                        height: 250,
+                        width: 175,
+                        child: Image.asset(
+                          'assets/images/$hold5.png',
+                          height: 250,
+                          width: 175,
+                          fit: BoxFit.fill,
                         ),
                       ),
                     ),
