@@ -201,6 +201,7 @@ class _MobileModeState extends State<MobileMode> {
                                 _counter = 0;
                                 showDialog(
                                   context: context,
+                                  barrierDismissible: false,
                                   builder: (BuildContext context) =>
                                       AlertDialog(
                                     title: const Text(
