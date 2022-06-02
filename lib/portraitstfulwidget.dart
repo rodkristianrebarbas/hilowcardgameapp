@@ -118,7 +118,7 @@ class _MobileModeState extends State<MobileMode> {
                 ),
                 textAlign: TextAlign.center,
               ),
-              const Padding(padding: EdgeInsets.all(5)),
+              const Padding(padding: EdgeInsets.only(top: 5)),
               Expanded(
                 flex: 0,
                 child: ClipRRect(
@@ -371,7 +371,7 @@ class _MobileModeState extends State<MobileMode> {
                 ),
                 textAlign: TextAlign.center,
               ),
-              const Padding(padding: EdgeInsets.only(top: 15)),
+              const Padding(padding: EdgeInsets.only(top: 5)),
               Expanded(
                 flex: 1,
                 child: Row(
