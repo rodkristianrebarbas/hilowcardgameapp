@@ -477,7 +477,9 @@ class _MobileModeState extends State<MobileMode> {
                         onPressed: () {
                           setState(() {
                             worldShuffle();
-                            Navigator.pop(context);
+                            Navigator.popUntil(context, (route) {
+                              return route.settings.name == "/";
+                            });
                           });
                         },
                         child: const Text(

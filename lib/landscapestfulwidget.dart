@@ -478,7 +478,9 @@ class _DesktopModeState extends State<DesktopMode> {
                         onPressed: () {
                           setState(() {
                             worldShuffle();
-                            Navigator.pop(context);
+                            Navigator.popUntil(context, (route) {
+                              return route.settings.name == "/";
+                            });
                           });
                         },
                         child: const Text(
