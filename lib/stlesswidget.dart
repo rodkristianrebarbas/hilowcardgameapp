@@ -75,10 +75,8 @@ class SecondScreen extends StatelessWidget {
     return Scaffold(
       body: const SafeArea(
         child: ResponsiveWidget(
-          mobile:
-            MobileMode(),
-          desktop:
-            DesktopMode(),
+          mobile: MobileMode(),
+          desktop: DesktopMode(),
         ),
       ),
       backgroundColor: Colors.green[200],
@@ -212,4 +210,3 @@ class _FlipcardMobileState extends State<FlipcardMobile> {
     );
   }
 }
-

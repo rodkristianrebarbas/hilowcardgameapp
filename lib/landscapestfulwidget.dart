@@ -89,13 +89,13 @@ class _DesktopModeState extends State<DesktopMode> {
       direction: Axis.vertical,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Padding(padding: EdgeInsets.all(5)),
         Expanded(
           flex: 1,
           child: Flex(
             direction: Axis.vertical,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              const Padding(padding: EdgeInsets.only(top: 5)),
               const Text(
                 'Deck',
                 style: TextStyle(
@@ -458,72 +458,72 @@ class _DesktopModeState extends State<DesktopMode> {
                       borderRadius: BorderRadius.circular(5),
                       child: Container(
                         color: Colors.grey[400],
-                        height: 250,
-                        width: 175,
+                        height: 220,
+                        width: 145,
                         child: Image.asset(
                           'assets/images/$hold1.png',
-                          height: 250,
-                          width: 175,
+                          height: 220,
+                          width: 145,
                           fit: BoxFit.fill,
                         ),
                       ),
                     ),
-                    const Padding(padding: EdgeInsets.all(5)),
+                    const Padding(padding: EdgeInsets.all(2)),
                     ClipRRect(
                       borderRadius: BorderRadius.circular(5),
                       child: Container(
                         color: Colors.grey[400],
-                        height: 250,
-                        width: 175,
+                        height: 220,
+                        width: 145,
                         child: Image.asset(
                           'assets/images/$hold2.png',
-                          height: 250,
-                          width: 175,
+                          height: 220,
+                          width: 145,
                           fit: BoxFit.fill,
                         ),
                       ),
                     ),
-                    const Padding(padding: EdgeInsets.all(5)),
+                    const Padding(padding: EdgeInsets.all(2)),
                     ClipRRect(
                       borderRadius: BorderRadius.circular(5),
                       child: Container(
                         color: Colors.grey[400],
-                        height: 250,
-                        width: 175,
+                        height: 220,
+                        width: 145,
                         child: Image.asset(
                           'assets/images/$hold3.png',
-                          height: 250,
-                          width: 175,
+                          height: 220,
+                          width: 145,
                           fit: BoxFit.fill,
                         ),
                       ),
                     ),
-                    const Padding(padding: EdgeInsets.all(5)),
+                    const Padding(padding: EdgeInsets.all(2)),
                     ClipRRect(
                       borderRadius: BorderRadius.circular(5),
                       child: Container(
                         color: Colors.grey[400],
-                        height: 250,
-                        width: 175,
+                        height: 220,
+                        width: 145,
                         child: Image.asset(
                           'assets/images/$hold4.png',
-                          height: 250,
-                          width: 175,
+                          height: 220,
+                          width: 145,
                           fit: BoxFit.fill,
                         ),
                       ),
                     ),
-                    const Padding(padding: EdgeInsets.all(5)),
+                    const Padding(padding: EdgeInsets.all(2)),
                     ClipRRect(
                       borderRadius: BorderRadius.circular(5),
                       child: Container(
                         color: Colors.grey[400],
-                        height: 250,
-                        width: 175,
+                        height: 220,
+                        width: 145,
                         child: Image.asset(
                           'assets/images/$hold5.png',
-                          height: 250,
-                          width: 175,
+                          height: 220,
+                          width: 145,
                           fit: BoxFit.fill,
                         ),
                       ),
