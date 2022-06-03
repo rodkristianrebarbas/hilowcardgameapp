@@ -4,6 +4,30 @@ import 'package:hilowcardgameapp/responsivehelper.dart';
 import 'landscapestfulwidget.dart';
 import 'howtoplay.dart';
 
+class Textbutton3 extends StatelessWidget {
+  const Textbutton3({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: () {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const HowToPlay()));
+      },
+      child: const Text(
+        'About',
+        style: TextStyle(
+          fontFamily: 'IndieFlower',
+          fontSize: 50,
+          color: Colors.black,
+        ),
+      ),
+    );
+  }
+}
+
 class Textbutton2 extends StatelessWidget {
   const Textbutton2({
     Key? key,
@@ -96,36 +120,83 @@ class DesktopMod extends StatefulWidget {
 class _DesktopModState extends State<DesktopMod> {
   @override
   Widget build(BuildContext context) {
-    return const LandscapeMode();
+    return Scaffold(
+      body: Container(
+        alignment: Alignment.center,
+        padding: const EdgeInsets.all(10),
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/cardBg.jpg'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Flex(
+          direction: Axis.vertical,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            const Text(
+              'High/Low Card Game',
+              style: TextStyle(
+                fontFamily: 'IndieFlower',
+                fontSize: 60,
+                color: Colors.black,
+              ),
+            ),
+            const Padding(padding: EdgeInsets.all(20)),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: const [
+                Flexible(
+                  flex: 1,
+                  fit: FlexFit.loose,
+                  child: Imagewidget(),
+                ),
+              ],
+            ),
+            Flexible(
+              flex: 1,
+              fit: FlexFit.loose,
+              child: Textbutton1(),
+            ),
+            Flexible(
+              flex: 1,
+              fit: FlexFit.loose,
+              child: Textbutton2(),
+            ),
+            Flexible(
+              flex: 1,
+              fit: FlexFit.loose,
+              child: Textbutton3(),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
 
-class LandscapeMode extends StatelessWidget {
-  const LandscapeMode({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(mainAxisAlignment: MainAxisAlignment.center, children: const [
-      Padding(
-        padding: EdgeInsets.fromLTRB(50, 450, 50, 300),
-      ),
-      Expanded(
-        child: Imagewidget(),
-      ),
-      SizedBox(width: 12.50),
-      Expanded(
-        child: Textbutton1(),
-      ),
-      SizedBox(width: 12.50),
-      Expanded(
-        child: Textbutton2(),
-      ),
-    ]);
-  }
-}
-
+/*
+        Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: const [
+        Padding(
+          padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+        ),
+        SizedBox(height: 12.50),
+        Expanded(
+          child: Imagewidget(),
+        ),
+        SizedBox(height: 12.50),
+        Expanded(
+          child: Textbutton1(),
+        ),
+        SizedBox(height: 12.50),
+        Expanded(
+          child: Textbutton2(),
+        ),
+      ],
+    );
+*/
 class MobileMod extends StatelessWidget {
   const MobileMod({
     Key? key,
@@ -146,26 +217,7 @@ class PortraitMode extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: const [
-        Padding(
-          padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-        ),
-        SizedBox(height: 12.50),
-        Expanded(
-          child: Imagewidget(),
-        ),
-        SizedBox(height: 12.50),
-        Expanded(
-          child: Textbutton1(),
-        ),
-        SizedBox(height: 12.50),
-        Expanded(
-          child: Textbutton2(),
-        ),
-      ],
-    );
+    return Scaffold();
   }
 }
 

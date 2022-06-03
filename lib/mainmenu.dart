@@ -15,33 +15,11 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          widget.title,
-          style: const TextStyle(
-            fontFamily: 'IndieFlower',
-            fontSize: 50.0,
-            fontStyle: FontStyle.italic,
-          ),
-        ),
-        backgroundColor: Colors.transparent,
-        foregroundColor: Colors.black,
-        elevation: 0.0,
-        centerTitle: true,
+    return const Scaffold(
+      body: ResponsiveWidget(
+        mobile: MobileMod(),
+        desktop: DesktopMod(),
       ),
-      body: SafeArea(
-        child: ResponsiveWidget(
-          mobile: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              MobileMod(),
-            ],
-          ),
-          desktop: const DesktopMod(),
-        ),
-      ),
-      backgroundColor: Colors.green[200],
     );
   }
 }
@@ -54,4 +32,15 @@ class MyCustomScrollBehavior extends MaterialScrollBehavior {
         PointerDeviceKind.mouse,
       };
 }
+SafeArea(
+        child: ResponsiveWidget(
+          mobile: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              MobileMod(),
+            ],
+          ),
+          desktop: DesktopMod(),
+        ),
+      ),
 */

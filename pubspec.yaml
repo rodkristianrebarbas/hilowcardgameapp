@@ -64,6 +64,7 @@ flutter:
     - assets/images/card.png
     - assets/images/playing-card-back.jpg
     - assets/images/cardSlot.png
+    - assets/images/cardBg.jpg
     - assets/images/AS.png
     - assets/images/AH.png
     - assets/images/AC.png

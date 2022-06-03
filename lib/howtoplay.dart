@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:hilowcardgameapp/responsivehelper.dart';
 
-class HowToPlay extends StatelessWidget {
+class HowToPlay extends StatefulWidget {
   const HowToPlay({key}) : super(key: key);
 
+  @override
+  State<HowToPlay> createState() => _HowToPlayState();
+}
+
+class _HowToPlayState extends State<HowToPlay> {
+  final ScrollController controller = ScrollController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
