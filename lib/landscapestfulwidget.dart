@@ -86,14 +86,13 @@ class _DesktopModeState extends State<DesktopMode> {
   @override
   Widget build(BuildContext context) {
     return Flex(
-      direction: Axis.vertical,
+      direction: Axis.horizontal,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Expanded(
+        Flexible(
           flex: 1,
-          child: Flex(
-            direction: Axis.vertical,
-            mainAxisAlignment: MainAxisAlignment.center,
+          fit: FlexFit.loose,
+          child: Column(
             children: [
               const Padding(padding: EdgeInsets.only(top: 5)),
               const Text(
@@ -542,7 +541,7 @@ class _DesktopModeState extends State<DesktopMode> {
                     children: [
                       const Padding(padding: EdgeInsets.all(5)),
                       Text(
-                        'Counter: $_counter',
+                        'Score: $_counter',
                         style: const TextStyle(
                           fontFamily: 'IndieFlower',
                           fontSize: 35,

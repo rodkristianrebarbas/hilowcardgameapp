@@ -17,10 +17,10 @@ class MobileMode extends StatefulWidget {
 class _MobileModeState extends State<MobileMode> {
   final ScrollController controller = ScrollController();
   int xy = 0;
-  int get imagePath => deckList[xy].number;
+  int get imagePath => deckList[xy].keys;
   late FlipCardController _controller;
   int xy1 = 1;
-  int get imagpath => deckList[xy1].number;
+  int get imagpath => deckList[xy1].keys;
   int _counter = 0;
 
   void button1Condition() async {
@@ -87,16 +87,15 @@ class _MobileModeState extends State<MobileMode> {
   @override
   Widget build(BuildContext context) {
     return Flex(
-      direction: Axis.vertical,
+      direction: Axis.horizontal,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Padding(padding: EdgeInsets.only(top: 10)),
-        Expanded(
+        Flexible(
           flex: 1,
-          child: Flex(
-            direction: Axis.vertical,
-            mainAxisAlignment: MainAxisAlignment.center,
+          fit: FlexFit.loose,
+          child: Column(
             children: [
+              const Padding(padding: EdgeInsets.only(top: 10)),
               const Text(
                 'Deck',
                 style: TextStyle(
@@ -543,7 +542,7 @@ class _MobileModeState extends State<MobileMode> {
                     children: [
                       const Padding(padding: EdgeInsets.only(top: 5)),
                       Text(
-                        'Counter: $_counter',
+                        'Score: $_counter',
                         style: const TextStyle(
                           fontFamily: 'IndieFlower',
                           fontSize: 30,
