@@ -88,7 +88,7 @@ class Imagewidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Flexible(
       flex: 1,
-      fit: FlexFit.tight,
+      fit: FlexFit.loose,
       child: Image.asset(
         'assets/images/card.png',
         height: 600.0,
@@ -145,7 +145,7 @@ class _DesktopModState extends State<DesktopMod> {
               'High/Low Card Game',
               style: TextStyle(
                 fontFamily: 'IndieFlower',
-                fontSize: 60,
+                fontSize: 50,
                 fontWeight: FontWeight.bold,
                 color: Color.fromARGB(255, 0, 255, 132),
               ),
@@ -196,33 +196,35 @@ class MobileMod extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
-        child: Column(
+        child: Flex(
+          direction: Axis.vertical,
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text(
+          mainAxisSize: MainAxisSize.max,
+          children: const [
+            Text(
               'High/Low Card Game',
               style: TextStyle(
                 fontFamily: 'IndieFlower',
-                fontSize: 60,
+                fontSize: 45,
                 fontWeight: FontWeight.bold,
                 color: Color.fromARGB(255, 0, 255, 132),
               ),
             ),
-            const Padding(padding: EdgeInsets.all(10)),
+            Padding(padding: EdgeInsets.all(5)),
             Imagewidget(),
             Flexible(
               flex: 1,
-              fit: FlexFit.loose,
+              fit: FlexFit.tight,
               child: Textbutton1(),
             ),
             Flexible(
               flex: 1,
-              fit: FlexFit.loose,
+              fit: FlexFit.tight,
               child: Textbutton2(),
             ),
             Flexible(
               flex: 1,
-              fit: FlexFit.loose,
+              fit: FlexFit.tight,
               child: Textbutton3(),
             ),
           ],
