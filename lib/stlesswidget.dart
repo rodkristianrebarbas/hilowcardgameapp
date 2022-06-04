@@ -21,6 +21,7 @@ class Textbutton3 extends StatelessWidget {
         style: TextStyle(
           fontFamily: 'IndieFlower',
           fontSize: 50,
+          fontWeight: FontWeight.bold,
           color: Colors.black,
         ),
       ),
@@ -45,6 +46,7 @@ class Textbutton2 extends StatelessWidget {
         style: TextStyle(
           fontFamily: 'IndieFlower',
           fontSize: 50,
+          fontWeight: FontWeight.bold,
           color: Colors.black,
         ),
       ),
@@ -69,6 +71,7 @@ class Textbutton1 extends StatelessWidget {
         style: TextStyle(
           fontFamily: 'IndieFlower',
           fontSize: 50,
+          fontWeight: FontWeight.bold,
           color: Colors.black,
         ),
       ),
@@ -83,10 +86,14 @@ class Imagewidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.asset(
-      'assets/images/card.png',
-      height: 600.0,
-      width: 600.0,
+    return Flexible(
+      flex: 1,
+      fit: FlexFit.tight,
+      child: Image.asset(
+        'assets/images/card.png',
+        height: 600.0,
+        width: 600.0,
+      ),
     );
   }
 }
@@ -123,7 +130,7 @@ class _DesktopModState extends State<DesktopMod> {
     return Scaffold(
       body: Container(
         alignment: Alignment.center,
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(30),
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/images/cardBg.jpg'),
@@ -139,20 +146,70 @@ class _DesktopModState extends State<DesktopMod> {
               style: TextStyle(
                 fontFamily: 'IndieFlower',
                 fontSize: 60,
-                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                color: Color.fromARGB(255, 0, 255, 132),
               ),
             ),
             const Padding(padding: EdgeInsets.all(20)),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: const [
+                Imagewidget(),
                 Flexible(
                   flex: 1,
-                  fit: FlexFit.loose,
-                  child: Imagewidget(),
+                  fit: FlexFit.tight,
+                  child: Textbutton1(),
+                ),
+                Flexible(
+                  flex: 1,
+                  fit: FlexFit.tight,
+                  child: Textbutton2(),
+                ),
+                Flexible(
+                  flex: 1,
+                  fit: FlexFit.tight,
+                  child: Textbutton3(),
                 ),
               ],
             ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class MobileMod extends StatelessWidget {
+  const MobileMod({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        alignment: Alignment.center,
+        padding: const EdgeInsets.all(10),
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/cardBg.jpg'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              'High/Low Card Game',
+              style: TextStyle(
+                fontFamily: 'IndieFlower',
+                fontSize: 60,
+                fontWeight: FontWeight.bold,
+                color: Color.fromARGB(255, 0, 255, 132),
+              ),
+            ),
+            const Padding(padding: EdgeInsets.all(10)),
+            Imagewidget(),
             Flexible(
               flex: 1,
               fit: FlexFit.loose,
@@ -172,52 +229,6 @@ class _DesktopModState extends State<DesktopMod> {
         ),
       ),
     );
-  }
-}
-
-/*
-        Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: const [
-        Padding(
-          padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-        ),
-        SizedBox(height: 12.50),
-        Expanded(
-          child: Imagewidget(),
-        ),
-        SizedBox(height: 12.50),
-        Expanded(
-          child: Textbutton1(),
-        ),
-        SizedBox(height: 12.50),
-        Expanded(
-          child: Textbutton2(),
-        ),
-      ],
-    );
-*/
-class MobileMod extends StatelessWidget {
-  const MobileMod({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const Expanded(
-      child: PortraitMode(),
-    );
-  }
-}
-
-class PortraitMode extends StatelessWidget {
-  const PortraitMode({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold();
   }
 }
 
