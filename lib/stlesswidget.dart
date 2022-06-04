@@ -88,7 +88,7 @@ class Imagewidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Flexible(
       flex: 1,
-      fit: FlexFit.loose,
+      fit: FlexFit.tight,
       child: Image.asset(
         'assets/images/card.png',
         height: 600.0,
@@ -157,17 +157,31 @@ class _DesktopModState extends State<DesktopMod> {
                 Imagewidget(),
                 Flexible(
                   flex: 1,
-                  fit: FlexFit.tight,
+                  fit: FlexFit.loose,
                   child: Textbutton1(),
                 ),
                 Flexible(
                   flex: 1,
-                  fit: FlexFit.tight,
+                  fit: FlexFit.loose,
+                  child: Padding(
+                    padding: EdgeInsets.all(5),
+                  ),
+                ),
+                Flexible(
+                  flex: 1,
+                  fit: FlexFit.loose,
                   child: Textbutton2(),
                 ),
                 Flexible(
                   flex: 1,
-                  fit: FlexFit.tight,
+                  fit: FlexFit.loose,
+                  child: Padding(
+                    padding: EdgeInsets.all(5),
+                  ),
+                ),
+                Flexible(
+                  flex: 1,
+                  fit: FlexFit.loose,
                   child: Textbutton3(),
                 ),
               ],
@@ -189,45 +203,55 @@ class MobileMod extends StatelessWidget {
     return Scaffold(
       body: Container(
         alignment: Alignment.center,
-        padding: const EdgeInsets.all(10),
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/images/cardBg.jpg'),
             fit: BoxFit.cover,
           ),
         ),
-        child: Flex(
-          direction: Axis.vertical,
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.max,
-          children: const [
-            Text(
-              'High/Low Card Game',
-              style: TextStyle(
-                fontFamily: 'IndieFlower',
-                fontSize: 45,
-                fontWeight: FontWeight.bold,
-                color: Color.fromARGB(255, 0, 255, 132),
+        child: Container(
+          alignment: Alignment.center,
+          margin: const EdgeInsets.all(10),
+          decoration: const BoxDecoration(
+            color: Colors.transparent,
+          ),
+          child: Flex(
+            direction: Axis.vertical,
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
+            children: const [
+              Flexible(
+                flex: 1,
+                fit: FlexFit.loose,
+                child: Text(
+                  'High/Low Card Game',
+                  style: TextStyle(
+                    fontFamily: 'IndieFlower',
+                    fontSize: 45,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 0, 255, 132),
+                  ),
+                ),
               ),
-            ),
-            Padding(padding: EdgeInsets.all(5)),
-            Imagewidget(),
-            Flexible(
-              flex: 1,
-              fit: FlexFit.tight,
-              child: Textbutton1(),
-            ),
-            Flexible(
-              flex: 1,
-              fit: FlexFit.tight,
-              child: Textbutton2(),
-            ),
-            Flexible(
-              flex: 1,
-              fit: FlexFit.tight,
-              child: Textbutton3(),
-            ),
-          ],
+              Padding(padding: EdgeInsets.all(5)),
+              Imagewidget(),
+              Flexible(
+                flex: 1,
+                fit: FlexFit.tight,
+                child: Textbutton1(),
+              ),
+              Flexible(
+                flex: 1,
+                fit: FlexFit.tight,
+                child: Textbutton2(),
+              ),
+              Flexible(
+                flex: 1,
+                fit: FlexFit.tight,
+                child: Textbutton3(),
+              ),
+            ],
+          ),
         ),
       ),
     );
