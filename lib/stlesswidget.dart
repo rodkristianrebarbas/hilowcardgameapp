@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hilowcardgameapp/responsivehelper.dart';
 import 'landscapestfulwidget.dart';
 import 'howtoplay.dart';
+import 'mobilelandscape.dart';
 
 class Textbutton3 extends StatelessWidget {
   const Textbutton3({
@@ -106,7 +107,7 @@ class SecondScreen extends StatelessWidget {
     return Scaffold(
       body: const SafeArea(
         child: ResponsiveWidget(
-          mobile: MobileMode(),
+          mobile: PortraitORLandscape(),
           desktop: DesktopMode(),
         ),
       ),
@@ -203,59 +204,80 @@ class MobileMod extends StatelessWidget {
     return Scaffold(
       body: Container(
         alignment: Alignment.center,
+        padding: const EdgeInsets.all(5),
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/images/cardBg.jpg'),
             fit: BoxFit.cover,
           ),
         ),
-        child: Container(
-          alignment: Alignment.center,
-          margin: const EdgeInsets.all(10),
-          decoration: const BoxDecoration(
-            color: Colors.transparent,
-          ),
-          child: Flex(
-            direction: Axis.vertical,
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.max,
-            children: const [
-              Flexible(
-                flex: 1,
-                fit: FlexFit.loose,
-                child: Text(
-                  'High/Low Card Game',
-                  style: TextStyle(
-                    fontFamily: 'IndieFlower',
-                    fontSize: 45,
-                    fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(255, 0, 255, 132),
-                  ),
+        child: Flex(
+          direction: Axis.vertical,
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
+          children: const [
+            Padding(padding: EdgeInsets.all(10)),
+            Flexible(
+              flex: 1,
+              fit: FlexFit.loose,
+              child: Text(
+                'High/Low Card Game',
+                style: TextStyle(
+                  fontFamily: 'IndieFlower',
+                  fontSize: 45,
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromARGB(255, 0, 255, 132),
                 ),
               ),
-              Padding(padding: EdgeInsets.all(5)),
-              Imagewidget(),
-              Flexible(
-                flex: 1,
-                fit: FlexFit.tight,
-                child: Textbutton1(),
-              ),
-              Flexible(
-                flex: 1,
-                fit: FlexFit.tight,
-                child: Textbutton2(),
-              ),
-              Flexible(
-                flex: 1,
-                fit: FlexFit.tight,
-                child: Textbutton3(),
-              ),
-            ],
-          ),
+            ),
+            Padding(padding: EdgeInsets.all(5)),
+            Imagewidget(),
+            Flexible(
+              flex: 1,
+              fit: FlexFit.tight,
+              child: Textbutton1(),
+            ),
+            Flexible(
+              flex: 1,
+              fit: FlexFit.tight,
+              child: Textbutton2(),
+            ),
+            Flexible(
+              flex: 1,
+              fit: FlexFit.tight,
+              child: Textbutton3(),
+            ),
+          ],
         ),
       ),
     );
   }
+}
+
+class PortraitORLandscape extends StatefulWidget {
+  const PortraitORLandscape({Key? key}) : super(key: key);
+
+  @override
+  State<PortraitORLandscape> createState() => _PortraitORLandscapeState();
+}
+
+class _PortraitORLandscapeState extends State<PortraitORLandscape> {
+  @override
+  Widget build(BuildContext context) {
+    return OrientationBuilder(
+      builder: (context, orientation) => orientation == Orientation.portrait
+          ? buildPortrait()
+          : buildLandscape(),
+    );
+  }
+
+  Widget buildPortrait() => const Scaffold(
+        body: MobileMode(),
+      );
+
+  Widget buildLandscape() => const Scaffold(
+        body: MobileLandscape(),
+      );
 }
 
 class Flipcard extends StatefulWidget {
