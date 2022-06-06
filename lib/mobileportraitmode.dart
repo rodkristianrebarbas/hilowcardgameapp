@@ -94,7 +94,7 @@ class _MobileModePortraitState extends State<MobilePortrait> {
             children: [
               Flexible(
                 flex: 1,
-                fit: FlexFit.tight,
+                fit: FlexFit.loose,
                 child: Column(
                   children: [
                     const Padding(padding: EdgeInsets.only(top: 10)),
@@ -109,8 +109,8 @@ class _MobileModePortraitState extends State<MobilePortrait> {
                       textAlign: TextAlign.center,
                     ),
                     Flexible(
-                      flex: 1,
-                      fit: FlexFit.tight,
+                      flex: 0,
+                      fit: FlexFit.loose,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -118,8 +118,8 @@ class _MobileModePortraitState extends State<MobilePortrait> {
                             borderRadius: BorderRadius.circular(5),
                             child: Container(
                               color: Colors.white,
-                              height: 200,
-                              width: 145,
+                              height: 170,
+                              width: 125,
                               child: FlipcardMobile(
                                 imagpath:
                                     'assets/images/${deckList[xy].imgpath}.png',
@@ -132,8 +132,8 @@ class _MobileModePortraitState extends State<MobilePortrait> {
                             borderRadius: BorderRadius.circular(5),
                             child: Container(
                               color: Colors.white,
-                              height: 200,
-                              width: 145,
+                              height: 170,
+                              width: 125,
                               child: FlipCard(
                                 speed: 500,
                                 controller: _controller,
