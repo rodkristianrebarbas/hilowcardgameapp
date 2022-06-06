@@ -506,7 +506,10 @@ class _MobileModePortraitState extends State<MobilePortrait> {
                               onPressed: () {
                                 setState(() {
                                   worldShuffle();
-                                  Navigator.pop(context);
+                                  store = [];
+                                  Navigator.popUntil(context, (route) {
+                                    return route.settings.name == "/";
+                                  });
                                 });
                               },
                               child: const Text(

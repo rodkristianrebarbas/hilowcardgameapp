@@ -2,10 +2,8 @@ import 'portraitstfulwidget.dart';
 import 'package:flutter/material.dart';
 import 'package:hilowcardgameapp/responsivehelper.dart';
 import 'landscapestfulwidget.dart';
-import 'howtoplay.dart';
 import 'mobilelandscapemode.dart';
 import 'mobileportraitmode.dart';
-import 'aboutcardgame.dart';
 
 class Textbutton3 extends StatelessWidget {
   const Textbutton3({
@@ -16,8 +14,36 @@ class Textbutton3 extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const AboutGame()));
+        showDialog(
+          barrierDismissible: false,
+          context: context,
+          builder: (BuildContext context) => AlertDialog(
+            title: const Text(
+              'About High/Low Game',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontFamily: 'IndieFlower',
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold),
+            ),
+            content: const Text(
+              'Created By: Rod Kristian J. Rebarbas',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontFamily: 'IndieFlower',
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold),
+            ),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text('OK'),
+              ),
+            ],
+          ),
+        );
       },
       child: const Text(
         'About',
@@ -41,8 +67,36 @@ class Textbutton2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const HowToPlay()));
+        showDialog(
+          barrierDismissible: false,
+          context: context,
+          builder: (BuildContext context) => AlertDialog(
+            title: const Text(
+              'How to play the game?',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontFamily: 'IndieFlower',
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold),
+            ),
+            content: const Text(
+              'This game is a game of chance. Just click > for high, < for low and N for next card',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontFamily: 'IndieFlower',
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold),
+            ),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text('OK'),
+              ),
+            ],
+          ),
+        );
       },
       child: const Text(
         'How to Play',
