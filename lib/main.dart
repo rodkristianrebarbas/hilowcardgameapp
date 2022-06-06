@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       home: const MyHomePage(title: 'Hi-Lo Card Game'),
       debugShowCheckedModeBanner: false,
       color: Colors.green,
-      //scrollBehavior: MyCustomScrollBehavior(),
+      scrollBehavior: MyCustomScrollBehavior(),
     );
   }
 }

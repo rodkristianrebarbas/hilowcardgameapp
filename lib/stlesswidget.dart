@@ -24,7 +24,7 @@ class Textbutton3 extends StatelessWidget {
           fontFamily: 'IndieFlower',
           fontSize: 50,
           fontWeight: FontWeight.bold,
-          color: Colors.black,
+          color: Colors.white,
         ),
       ),
     );
@@ -49,7 +49,7 @@ class Textbutton2 extends StatelessWidget {
           fontFamily: 'IndieFlower',
           fontSize: 50,
           fontWeight: FontWeight.bold,
-          color: Colors.black,
+          color: Colors.white,
         ),
       ),
     );
@@ -74,7 +74,7 @@ class Textbutton1 extends StatelessWidget {
           fontFamily: 'IndieFlower',
           fontSize: 50,
           fontWeight: FontWeight.bold,
-          color: Colors.black,
+          color: Colors.white,
         ),
       ),
     );

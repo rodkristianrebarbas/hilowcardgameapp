@@ -336,9 +336,11 @@ class _MobileLandscapeState extends State<MobileLandscape> {
               ),
             ),
             Container(
-              color: Colors.transparent,
               height: MediaQuery.of(context).size.height,
               width: 200,
+              decoration: BoxDecoration(
+                color: Colors.grey.shade200.withOpacity(0.7),
+              ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 mainAxisSize: MainAxisSize.max,
@@ -390,8 +392,9 @@ class _MobileLandscapeState extends State<MobileLandscape> {
                       'Show 5 Cards',
                       style: TextStyle(
                         fontFamily: 'IndieFlower',
-                        fontSize: 30,
-                        color: Colors.black,
+                        fontSize: 31,
+                        fontWeight: FontWeight.w900,
+                        color: Color.fromARGB(255, 0, 15, 228),
                       ),
                     ),
                   ),
@@ -399,8 +402,9 @@ class _MobileLandscapeState extends State<MobileLandscape> {
                     'Score: $_counter',
                     style: const TextStyle(
                       fontFamily: 'IndieFlower',
-                      fontSize: 30,
-                      color: Colors.black,
+                      fontSize: 31,
+                      fontWeight: FontWeight.w900,
+                      color: Color.fromARGB(255, 0, 15, 228),
                     ),
                     textAlign: TextAlign.center,
                   ),
@@ -418,8 +422,9 @@ class _MobileLandscapeState extends State<MobileLandscape> {
                       'Home',
                       style: TextStyle(
                         fontFamily: 'IndieFlower',
-                        fontSize: 30,
-                        color: Colors.black,
+                        fontSize: 31,
+                        fontWeight: FontWeight.w900,
+                        color: Color.fromARGB(255, 0, 15, 228),
                       ),
                     ),
                   ),
