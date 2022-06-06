@@ -335,100 +335,104 @@ class _MobileLandscapeState extends State<MobileLandscape> {
                 ],
               ),
             ),
-            Container(
-              height: MediaQuery.of(context).size.height,
-              width: 200,
-              decoration: BoxDecoration(
-                color: Colors.grey.shade200.withOpacity(0.7),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  TextButton(
-                    onPressed: () {
-                      setState(() {
-                        showDialog(
-                          barrierDismissible: false,
-                          context: context,
-                          builder: (BuildContext context) => AlertDialog(
-                            title: const Text('Five Guessed Cards'),
-                            content: SingleChildScrollView(
-                              child: Column(children: [
-                                SizedBox(
-                                  height: 170,
-                                  width: 450,
-                                  child: ListView.builder(
-                                      itemCount: store.length,
-                                      scrollDirection: Axis.horizontal,
-                                      itemBuilder:
-                                          (BuildContext context, int index) {
-                                        return SizedBox(
-                                          height: 170,
-                                          width: 130,
-                                          child: Center(
-                                            child: Image.asset(
-                                              'assets/images/${store[index]}.png',
+            Flexible(
+              flex: 1,
+              fit: FlexFit.loose,
+              child: Container(
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade200.withOpacity(0.7),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        setState(() {
+                          showDialog(
+                            barrierDismissible: false,
+                            context: context,
+                            builder: (BuildContext context) => AlertDialog(
+                              title: const Text('Five Guessed Cards'),
+                              content: SingleChildScrollView(
+                                child: Column(children: [
+                                  SizedBox(
+                                    height: 170,
+                                    width: 450,
+                                    child: ListView.builder(
+                                        itemCount: store.length,
+                                        scrollDirection: Axis.horizontal,
+                                        itemBuilder:
+                                            (BuildContext context, int index) {
+                                          return SizedBox(
+                                            height: 170,
+                                            width: 130,
+                                            child: Center(
+                                              child: Image.asset(
+                                                'assets/images/${store[index]}.png',
+                                              ),
                                             ),
-                                          ),
-                                        );
-                                      }),
-                                )
-                              ]),
-                            ),
-                            actions: <Widget>[
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                child: const Text('OK'),
+                                          );
+                                        }),
+                                  )
+                                ]),
                               ),
-                            ],
-                          ),
-                        );
-                      });
-                    },
-                    child: const Text(
-                      'Show 5 Cards',
-                      style: TextStyle(
-                        fontFamily: 'IndieFlower',
-                        fontSize: 31,
-                        fontWeight: FontWeight.w900,
-                        color: Color.fromARGB(255, 0, 15, 228),
-                      ),
-                    ),
-                  ),
-                  Text(
-                    'Score: $_counter',
-                    style: const TextStyle(
-                      fontFamily: 'IndieFlower',
-                      fontSize: 31,
-                      fontWeight: FontWeight.w900,
-                      color: Color.fromARGB(255, 0, 15, 228),
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      setState(() {
-                        worldShuffle();
-                        store = [];
-                        Navigator.popUntil(context, (route) {
-                          return route.settings.name == "/";
+                              actions: <Widget>[
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: const Text('OK'),
+                                ),
+                              ],
+                            ),
+                          );
                         });
-                      });
-                    },
-                    child: const Text(
-                      'Home',
-                      style: TextStyle(
+                      },
+                      child: const Text(
+                        'Show 5 Cards',
+                        style: TextStyle(
+                          fontFamily: 'IndieFlower',
+                          fontSize: 31,
+                          fontWeight: FontWeight.w900,
+                          color: Color.fromARGB(255, 0, 15, 228),
+                        ),
+                      ),
+                    ),
+                    Text(
+                      'Score: $_counter',
+                      style: const TextStyle(
                         fontFamily: 'IndieFlower',
                         fontSize: 31,
                         fontWeight: FontWeight.w900,
                         color: Color.fromARGB(255, 0, 15, 228),
                       ),
+                      textAlign: TextAlign.center,
                     ),
-                  ),
-                ],
+                    TextButton(
+                      onPressed: () {
+                        setState(() {
+                          worldShuffle();
+                          store = [];
+                          Navigator.popUntil(context, (route) {
+                            return route.settings.name == "/";
+                          });
+                        });
+                      },
+                      child: const Text(
+                        'Home',
+                        style: TextStyle(
+                          fontFamily: 'IndieFlower',
+                          fontSize: 31,
+                          fontWeight: FontWeight.w900,
+                          color: Color.fromARGB(255, 0, 15, 228),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],

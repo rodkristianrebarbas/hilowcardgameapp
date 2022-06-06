@@ -26,8 +26,7 @@ class _MobileModeState extends State<MobileMode> {
     setState(() {
       button1 = false;
       button2 = false;
-      button3 = false;
-      button4 = true;
+      button3 = true;
     });
   }
 
@@ -35,33 +34,21 @@ class _MobileModeState extends State<MobileMode> {
     setState(() {
       button1 = false;
       button2 = false;
-      button3 = false;
-      button4 = true;
+      button3 = true;
     });
   }
 
   void button3Condition() async {
     setState(() {
-      button1 = false;
-      button2 = false;
-      button3 = false;
-      button4 = true;
-    });
-  }
-
-  void button4Condition() async {
-    setState(() {
       button1 = true;
       button2 = true;
-      button3 = true;
-      button4 = false;
+      button3 = false;
     });
   }
 
   bool button1 = true;
   bool button2 = true;
-  bool button3 = true;
-  bool button4 = false;
+  bool button3 = false;
 
   String hold1 = "cardSlot",
       hold2 = "cardSlot",
@@ -92,497 +79,446 @@ class _MobileModeState extends State<MobileMode> {
           fit: BoxFit.cover,
         ),
       ),
-      child: Flex(
-        direction: Axis.horizontal,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Flexible(
-            flex: 1,
-            fit: FlexFit.loose,
-            child: Column(
-              children: [
-                const Padding(padding: EdgeInsets.only(top: 5)),
-                const Text(
-                  'Deck',
-                  style: TextStyle(
-                    fontFamily: 'IndieFlower',
-                    fontSize: 40,
-                    color: Colors.black,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                Expanded(
-                  flex: 1,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(5),
-                        child: Container(
-                          color: Colors.white,
-                          height: 250,
-                          width: 175,
-                          child: Flipcard(
-                            imgpath:
-                                'assets/images/${deckList[xy].imgpath}.png',
-                            key: ValueKey<int>(imgpath),
-                          ),
-                        ),
-                      ),
-                      const Padding(padding: EdgeInsets.all(25)),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(5),
-                        child: Container(
-                          color: Colors.white,
-                          height: 250,
-                          width: 175,
-                          child: FlipCard(
-                            speed: 500,
-                            controller: _controller,
-                            flipOnTouch: false,
-                            front: Image.asset(
-                              'assets/images/playing-card-back.jpg',
-                              fit: BoxFit.fill,
-                            ),
-                            back: FlipCardDetails(
-                              imagePath:
-                                  'assets/images/${deckList[xy1].imgpath}.png',
-                              key: ValueKey<int>(imagePath),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const Padding(padding: EdgeInsets.all(5)),
-                const Text(
-                  'Choose',
-                  style: TextStyle(
-                    fontFamily: 'IndieFlower',
-                    fontSize: 40,
-                    color: Colors.black,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                const Padding(padding: EdgeInsets.all(5)),
-                Expanded(
-                  flex: 0,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(5),
-                    child: Container(
-                      color: Colors.white,
-                      height: 75,
-                      width: 400,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Opacity(
-                            opacity: button1 ? 1.0 : 0.2,
-                            child: TextButton(
-                              onPressed: () {
-                                if (button1) {
-                                  button1Condition();
-                                  setState(() {
-                                    _controller.state?.controller?.forward();
-                                    if (deckList[xy1].number >
-                                        deckList[xy].number) {
-                                      _counter++;
-                                      if (_counter <= 5) {
-                                        pushCard();
-                                      }
-                                    } else {
-                                      _counter = 0;
-                                      showDialog(
-                                        barrierDismissible: false,
-                                        context: context,
-                                        builder: (BuildContext context) =>
-                                            AlertDialog(
-                                          title: const Text(
-                                              'Owwww.....Not Guessed, Play Again?'),
-                                          content: const Text(
-                                              'Game Over!.....Press OK to revert back to home page'),
-                                          actions: <Widget>[
-                                            TextButton(
-                                              onPressed: () {
-                                                Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            const SecondScreen()));
-                                                worldShuffle();
-                                                store = [];
-                                              },
-                                              child: const Text('Play Again'),
-                                            ),
-                                            TextButton(
-                                              onPressed: () {
-                                                Navigator.popUntil(context,
-                                                    (route) {
-                                                  return route.settings.name ==
-                                                      "/";
-                                                });
-                                                worldShuffle();
-                                                store = [];
-                                              },
-                                              child: const Text('OK'),
-                                            ),
-                                          ],
-                                        ),
-                                      );
-                                    }
-                                  });
-                                }
-                              },
-                              child: const Text(
-                                "High",
-                                style: TextStyle(
-                                  fontFamily: 'IndieFlower',
-                                  fontSize: 40,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Opacity(
-                            opacity: button2 ? 1.0 : 0.2,
-                            child: TextButton(
-                              onPressed: () {
-                                if (button2) {
-                                  button2Condition();
-                                  setState(() {
-                                    _controller.state?.controller?.forward();
-                                    if (deckList[xy1].number ==
-                                        deckList[xy].number) {
-                                      _counter++;
-                                      if (_counter <= 5) {
-                                        //store.add(deckList[xy1].imgpath);
-                                        pushCard();
-                                      }
-                                    } else {
-                                      _counter = 0;
-                                      showDialog(
-                                        barrierDismissible: false,
-                                        context: context,
-                                        builder: (BuildContext context) =>
-                                            AlertDialog(
-                                          title: const Text(
-                                              'Owwww.....Not Guessed, Play Again?'),
-                                          content: const Text(
-                                              'Game Over!.....Press OK to revert back to home page'),
-                                          actions: <Widget>[
-                                            TextButton(
-                                              onPressed: () {
-                                                Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            const SecondScreen()));
-                                                worldShuffle();
-                                                store = [];
-                                              },
-                                              child: const Text('Play Again'),
-                                            ),
-                                            TextButton(
-                                              onPressed: () {
-                                                Navigator.popUntil(context,
-                                                    (route) {
-                                                  return route.settings.name ==
-                                                      "/";
-                                                });
-                                                worldShuffle();
-                                                store = [];
-                                              },
-                                              child: const Text('OK'),
-                                            ),
-                                          ],
-                                        ),
-                                      );
-                                    }
-                                  });
-                                }
-                              },
-                              child: const Text(
-                                "Equal",
-                                style: TextStyle(
-                                  fontFamily: 'IndieFlower',
-                                  fontSize: 40,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Opacity(
-                            opacity: button3 ? 1.0 : 0.2,
-                            child: TextButton(
-                              onPressed: () {
-                                if (button3) {
-                                  button3Condition();
-                                  setState(() {
-                                    _controller.state?.controller?.forward();
-                                    if (deckList[xy1].number <
-                                        deckList[xy].number) {
-                                      _counter++;
-                                      if (_counter <= 5) {
-                                        //store.add(deckList[xy1].imgpath);
-                                        pushCard();
-                                      }
-                                    } else {
-                                      _counter = 0;
-                                      showDialog(
-                                        barrierDismissible: false,
-                                        context: context,
-                                        builder: (BuildContext context) =>
-                                            AlertDialog(
-                                          title: const Text(
-                                              'Owwww.....Not Guessed, Play Again?'),
-                                          content: const Text(
-                                              'Game Over!.....Press OK to revert back to home page'),
-                                          actions: <Widget>[
-                                            TextButton(
-                                              onPressed: () {
-                                                Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            const SecondScreen()));
-                                                worldShuffle();
-                                                store = [];
-                                              },
-                                              child: const Text('Play Again'),
-                                            ),
-                                            TextButton(
-                                              onPressed: () {
-                                                Navigator.popUntil(context,
-                                                    (route) {
-                                                  return route.settings.name ==
-                                                      "/";
-                                                });
-                                                worldShuffle();
-                                                store = [];
-                                              },
-                                              child: const Text('OK'),
-                                            ),
-                                          ],
-                                        ),
-                                      );
-                                    }
-                                  });
-                                }
-                              },
-                              child: const Text(
-                                "Low",
-                                style: TextStyle(
-                                  fontFamily: 'IndieFlower',
-                                  fontSize: 40,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Opacity(
-                            opacity: button4 ? 1.0 : 0.2,
-                            child: TextButton(
-                              onPressed: () {
-                                if (button4) {
-                                  button4Condition();
-                                  setState(() {
-                                    xy++;
-                                    xy1++;
-                                    _controller.state?.controller?.reset();
-                                    if ((_counter == 52)) {
-                                      showDialog(
-                                        context: context,
-                                        barrierDismissible: false,
-                                        builder: (BuildContext context) =>
-                                            AlertDialog(
-                                          title:
-                                              const Text('Congratulations!!'),
-                                          content: const Text(
-                                              'You guessed all the cards..Press OK to revert back to home page'),
-                                          actions: <Widget>[
-                                            TextButton(
-                                              onPressed: () {
-                                                Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            const SecondScreen()));
-                                                worldShuffle();
-                                                store = [];
-                                              },
-                                              child: const Text('Play Again'),
-                                            ),
-                                            TextButton(
-                                              onPressed: () {
-                                                Navigator.popUntil(context,
-                                                    (route) {
-                                                  return route.settings.name ==
-                                                      "/";
-                                                });
-                                                worldShuffle();
-                                                store = [];
-                                              },
-                                              child: const Text('OK'),
-                                            ),
-                                          ],
-                                        ),
-                                      );
-                                    }
-                                  });
-                                }
-                              },
-                              child: const Text(
-                                "Next",
-                                style: TextStyle(
-                                  fontFamily: 'IndieFlower',
-                                  fontSize: 40,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+      child: Container(
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: Colors.grey.shade200.withOpacity(0.3),
+        ),
+        child: Flex(
+          direction: Axis.horizontal,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Flexible(
+              flex: 1,
+              fit: FlexFit.loose,
+              child: Column(
+                children: [
+                  const Padding(padding: EdgeInsets.only(top: 5)),
+                  const Text(
+                    'Deck',
+                    style: TextStyle(
+                      fontFamily: 'IndieFlower',
+                      fontSize: 40,
+                      fontWeight: FontWeight.w900,
+                      color: Colors.black,
                     ),
+                    textAlign: TextAlign.center,
                   ),
-                ),
-                const Padding(padding: EdgeInsets.all(10)),
-                const Text(
-                  'Guess Display(5 cards)',
-                  style: TextStyle(
-                    fontFamily: 'IndieFlower',
-                    fontSize: 40,
-                    color: Colors.black,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                const Padding(padding: EdgeInsets.all(10)),
-                Expanded(
-                  flex: 1,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(5),
-                        child: Container(
-                          color: Colors.grey[400],
-                          height: 200,
-                          width: 125,
-                          child: Image.asset(
-                            'assets/images/$hold1.png',
-                            height: 220,
-                            width: 145,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                      ),
-                      const Padding(padding: EdgeInsets.all(2)),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(5),
-                        child: Container(
-                          color: Colors.grey[400],
-                          height: 200,
-                          width: 125,
-                          child: Image.asset(
-                            'assets/images/$hold2.png',
-                            height: 200,
-                            width: 125,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                      ),
-                      const Padding(padding: EdgeInsets.all(2)),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(5),
-                        child: Container(
-                          color: Colors.grey[400],
-                          height: 200,
-                          width: 125,
-                          child: Image.asset(
-                            'assets/images/$hold3.png',
-                            height: 200,
-                            width: 125,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                      ),
-                      const Padding(padding: EdgeInsets.all(2)),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(5),
-                        child: Container(
-                          color: Colors.grey[400],
-                          height: 200,
-                          width: 125,
-                          child: Image.asset(
-                            'assets/images/$hold4.png',
-                            height: 200,
-                            width: 125,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                      ),
-                      const Padding(padding: EdgeInsets.all(2)),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(5),
-                        child: Container(
-                          color: Colors.grey[400],
-                          height: 200,
-                          width: 125,
-                          child: Image.asset(
-                            'assets/images/$hold5.png',
-                            height: 200,
-                            width: 125,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const Padding(padding: EdgeInsets.all(15)),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.end,
+                  Expanded(
+                    flex: 1,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Padding(padding: EdgeInsets.all(5)),
-                        Text(
-                          'Score: $_counter',
-                          style: const TextStyle(
-                            fontFamily: 'IndieFlower',
-                            fontSize: 35,
-                            color: Colors.black,
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(5),
+                          child: Container(
+                            color: Colors.white,
+                            height: 250,
+                            width: 175,
+                            child: Flipcard(
+                              imgpath:
+                                  'assets/images/${deckList[xy].imgpath}.png',
+                              key: ValueKey<int>(imgpath),
+                            ),
                           ),
                         ),
-                        const Padding(padding: EdgeInsets.all(5)),
-                        TextButton(
-                          onPressed: () {
-                            setState(() {
-                              worldShuffle();
-                              Navigator.pop(context);
-                            });
-                          },
-                          child: const Text(
-                            'Home',
-                            style: TextStyle(
-                              fontFamily: 'IndieFlower',
-                              fontSize: 35,
-                              color: Colors.black,
+                        const Padding(padding: EdgeInsets.all(25)),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(5),
+                          child: Container(
+                            color: Colors.white,
+                            height: 250,
+                            width: 175,
+                            child: FlipCard(
+                              speed: 500,
+                              controller: _controller,
+                              flipOnTouch: false,
+                              front: Image.asset(
+                                'assets/images/playing-card-back.jpg',
+                                fit: BoxFit.fill,
+                              ),
+                              back: FlipCardDetails(
+                                imagePath:
+                                    'assets/images/${deckList[xy1].imgpath}.png',
+                                key: ValueKey<int>(imagePath),
+                              ),
                             ),
                           ),
                         ),
                       ],
                     ),
-                  ],
-                ),
-              ],
+                  ),
+                  const Padding(padding: EdgeInsets.all(5)),
+                  const Text(
+                    'Choose',
+                    style: TextStyle(
+                      fontFamily: 'IndieFlower',
+                      fontSize: 40,
+                      fontWeight: FontWeight.w900,
+                      color: Colors.black,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const Padding(padding: EdgeInsets.all(5)),
+                  Expanded(
+                    flex: 0,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(5),
+                      child: Container(
+                        color: Colors.white.withOpacity(0.1),
+                        height: 75,
+                        width: 400,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Opacity(
+                              opacity: button1 ? 1.0 : 0.2,
+                              child: TextButton(
+                                onPressed: () {
+                                  if (button1) {
+                                    button1Condition();
+                                    setState(() {
+                                      _controller.state?.controller?.forward();
+                                      if (deckList[xy1].number >=
+                                          deckList[xy].number) {
+                                        _counter++;
+                                        if (_counter <= 5) {
+                                          pushCard();
+                                        }
+                                      } else {
+                                        _counter = 0;
+                                        showDialog(
+                                          barrierDismissible: false,
+                                          context: context,
+                                          builder: (BuildContext context) =>
+                                              AlertDialog(
+                                            title: const Text(
+                                                'Owwww.....Not Guessed, Play Again?'),
+                                            content: const Text(
+                                                'Game Over!.....Press OK to revert back to home page'),
+                                            actions: <Widget>[
+                                              TextButton(
+                                                onPressed: () {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              const SecondScreen()));
+                                                  worldShuffle();
+                                                  store = [];
+                                                },
+                                                child: const Text('Play Again'),
+                                              ),
+                                              TextButton(
+                                                onPressed: () {
+                                                  Navigator.popUntil(context,
+                                                      (route) {
+                                                    return route
+                                                            .settings.name ==
+                                                        "/";
+                                                  });
+                                                  worldShuffle();
+                                                  store = [];
+                                                },
+                                                child: const Text('OK'),
+                                              ),
+                                            ],
+                                          ),
+                                        );
+                                      }
+                                    });
+                                  }
+                                },
+                                child: const Text(
+                                  ">",
+                                  style: TextStyle(
+                                    fontFamily: 'IndieFlower',
+                                    fontSize: 40,
+                                    fontWeight: FontWeight.w600,
+                                    color: Color.fromARGB(255, 0, 255, 8),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Opacity(
+                              opacity: button2 ? 1.0 : 0.2,
+                              child: TextButton(
+                                onPressed: () {
+                                  if (button2) {
+                                    button2Condition();
+                                    setState(() {
+                                      _controller.state?.controller?.forward();
+                                      if (deckList[xy1].number <
+                                          deckList[xy].number) {
+                                        _counter++;
+                                        if (_counter <= 5) {
+                                          //store.add(deckList[xy1].imgpath);
+                                          pushCard();
+                                        }
+                                      } else {
+                                        _counter = 0;
+                                        showDialog(
+                                          barrierDismissible: false,
+                                          context: context,
+                                          builder: (BuildContext context) =>
+                                              AlertDialog(
+                                            title: const Text(
+                                                'Owwww.....Not Guessed, Play Again?'),
+                                            content: const Text(
+                                                'Game Over!.....Press OK to revert back to home page'),
+                                            actions: <Widget>[
+                                              TextButton(
+                                                onPressed: () {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              const SecondScreen()));
+                                                  worldShuffle();
+                                                  store = [];
+                                                },
+                                                child: const Text('Play Again'),
+                                              ),
+                                              TextButton(
+                                                onPressed: () {
+                                                  Navigator.popUntil(context,
+                                                      (route) {
+                                                    return route
+                                                            .settings.name ==
+                                                        "/";
+                                                  });
+                                                  worldShuffle();
+                                                  store = [];
+                                                },
+                                                child: const Text('OK'),
+                                              ),
+                                            ],
+                                          ),
+                                        );
+                                      }
+                                    });
+                                  }
+                                },
+                                child: const Text(
+                                  "<",
+                                  style: TextStyle(
+                                    fontFamily: 'IndieFlower',
+                                    fontSize: 40,
+                                    fontWeight: FontWeight.w600,
+                                    color: Color.fromARGB(255, 255, 17, 0),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Opacity(
+                              opacity: button3 ? 1.0 : 0.2,
+                              child: TextButton(
+                                onPressed: () {
+                                  if (button3) {
+                                    button3Condition();
+                                    setState(() {
+                                      xy++;
+                                      xy1++;
+                                      _controller.state?.controller?.reset();
+                                      if ((_counter == 52)) {
+                                        showDialog(
+                                          context: context,
+                                          barrierDismissible: false,
+                                          builder: (BuildContext context) =>
+                                              AlertDialog(
+                                            title:
+                                                const Text('Congratulations!!'),
+                                            content: const Text(
+                                                'You guessed all the cards..Press OK to revert back to home page'),
+                                            actions: <Widget>[
+                                              TextButton(
+                                                onPressed: () {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              const SecondScreen()));
+                                                  worldShuffle();
+                                                  store = [];
+                                                },
+                                                child: const Text('Play Again'),
+                                              ),
+                                              TextButton(
+                                                onPressed: () {
+                                                  Navigator.popUntil(context,
+                                                      (route) {
+                                                    return route
+                                                            .settings.name ==
+                                                        "/";
+                                                  });
+                                                  worldShuffle();
+                                                  store = [];
+                                                },
+                                                child: const Text('OK'),
+                                              ),
+                                            ],
+                                          ),
+                                        );
+                                      }
+                                    });
+                                  }
+                                },
+                                child: const Text(
+                                  "N",
+                                  style: TextStyle(
+                                    fontFamily: 'IndieFlower',
+                                    fontSize: 40,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  const Padding(padding: EdgeInsets.all(10)),
+                  const Text(
+                    'Guess Display(5 cards)',
+                    style: TextStyle(
+                      fontFamily: 'IndieFlower',
+                      fontSize: 40,
+                      fontWeight: FontWeight.w900,
+                      color: Colors.black,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const Padding(padding: EdgeInsets.all(10)),
+                  Expanded(
+                    flex: 1,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(5),
+                          child: Container(
+                            color: Colors.grey[400],
+                            height: 200,
+                            width: 125,
+                            child: Image.asset(
+                              'assets/images/$hold1.png',
+                              height: 220,
+                              width: 145,
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                        ),
+                        const Padding(padding: EdgeInsets.all(2)),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(5),
+                          child: Container(
+                            color: Colors.grey[400],
+                            height: 200,
+                            width: 125,
+                            child: Image.asset(
+                              'assets/images/$hold2.png',
+                              height: 200,
+                              width: 125,
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                        ),
+                        const Padding(padding: EdgeInsets.all(2)),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(5),
+                          child: Container(
+                            color: Colors.grey[400],
+                            height: 200,
+                            width: 125,
+                            child: Image.asset(
+                              'assets/images/$hold3.png',
+                              height: 200,
+                              width: 125,
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                        ),
+                        const Padding(padding: EdgeInsets.all(2)),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(5),
+                          child: Container(
+                            color: Colors.grey[400],
+                            height: 200,
+                            width: 125,
+                            child: Image.asset(
+                              'assets/images/$hold4.png',
+                              height: 200,
+                              width: 125,
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                        ),
+                        const Padding(padding: EdgeInsets.all(2)),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(5),
+                          child: Container(
+                            color: Colors.grey[400],
+                            height: 200,
+                            width: 125,
+                            child: Image.asset(
+                              'assets/images/$hold5.png',
+                              height: 200,
+                              width: 125,
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const Padding(padding: EdgeInsets.all(15)),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          const Padding(padding: EdgeInsets.all(5)),
+                          Text(
+                            'Score: $_counter',
+                            style: const TextStyle(
+                              fontFamily: 'IndieFlower',
+                              fontSize: 35,
+                              fontWeight: FontWeight.w900,
+                              color: Colors.black,
+                            ),
+                          ),
+                          const Padding(padding: EdgeInsets.all(5)),
+                          TextButton(
+                            onPressed: () {
+                              setState(() {
+                                worldShuffle();
+                                Navigator.pop(context);
+                              });
+                            },
+                            child: const Text(
+                              'Home',
+                              style: TextStyle(
+                                fontFamily: 'IndieFlower',
+                                fontSize: 35,
+                                fontWeight: FontWeight.w900,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

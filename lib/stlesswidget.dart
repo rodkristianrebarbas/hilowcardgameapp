@@ -5,6 +5,7 @@ import 'landscapestfulwidget.dart';
 import 'howtoplay.dart';
 import 'mobilelandscapemode.dart';
 import 'mobileportraitmode.dart';
+import 'aboutcardgame.dart';
 
 class Textbutton3 extends StatelessWidget {
   const Textbutton3({
@@ -16,7 +17,7 @@ class Textbutton3 extends StatelessWidget {
     return TextButton(
       onPressed: () {
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const HowToPlay()));
+            MaterialPageRoute(builder: (context) => const AboutGame()));
       },
       child: const Text(
         'About',
