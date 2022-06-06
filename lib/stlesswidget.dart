@@ -383,3 +383,26 @@ class _FlipcardMobileState extends State<FlipcardMobile> {
     );
   }
 }
+
+class FlipcardMobileLandscape extends StatefulWidget {
+  const FlipcardMobileLandscape({Key? key, required this.imagpath})
+      : super(key: key);
+  final String imagpath;
+
+  @override
+  State<FlipcardMobileLandscape> createState() =>
+      _FlipcardMobileLandscapeState();
+}
+
+class _FlipcardMobileLandscapeState extends State<FlipcardMobileLandscape> {
+  @override
+  Widget build(BuildContext context) {
+    return Image.asset(
+      widget.imagpath,
+      key: ValueKey<String>(widget.imagpath),
+      height: 240,
+      width: 180,
+      fit: BoxFit.fill,
+    );
+  }
+}

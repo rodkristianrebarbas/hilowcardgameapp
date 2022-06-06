@@ -26,6 +26,26 @@ class _MobileLandscapeState extends State<MobileLandscape> {
     _controller = FlipCardController();
   }
 
+  bool button1 = true, button2 = true, button3 = false;
+
+  void button1Condition() {
+    button1 = false;
+    button2 = false;
+    button3 = true;
+  }
+
+  void button2Condition() {
+    button1 = false;
+    button2 = false;
+    button3 = true;
+  }
+
+  void button3Condition() {
+    button1 = true;
+    button2 = true;
+    button3 = false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,7 +102,7 @@ class _MobileLandscapeState extends State<MobileLandscape> {
                           color: Colors.white,
                           height: 240,
                           width: 180,
-                          child: FlipcardMobile(
+                          child: FlipcardMobileLandscape(
                             imagpath:
                                 'assets/images/${deckList[xy].imgpath}.png',
                             key: ValueKey<int>(imagpath),
@@ -104,7 +124,7 @@ class _MobileLandscapeState extends State<MobileLandscape> {
                               'assets/images/playing-card-back.jpg',
                               fit: BoxFit.fill,
                             ),
-                            back: FlipCardDetails(
+                            back: FlipCardDetailsLandscape(
                               imagePath:
                                   'assets/images/${deckList[xy1].imgpath}.png',
                               key: ValueKey<int>(imagePath),
@@ -125,172 +145,190 @@ class _MobileLandscapeState extends State<MobileLandscape> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  TextButton(
-                    onPressed: () {
-                      setState(() {
-                        _controller.state?.controller?.forward();
-                        if (deckList[xy1].number >= deckList[xy].number) {
-                          _counter++;
-                          if (_counter <= 5) {
-                            store.add(deckList[xy1].imgpath);
-                          }
-                        } else {
-                          _counter = 0;
-                          showDialog(
-                            barrierDismissible: false,
-                            context: context,
-                            builder: (BuildContext context) => AlertDialog(
-                              title: const Text(
-                                  'Owwww.....Not Guessed, Play Again?'),
-                              content: const Text(
-                                  'Game Over!.....Press OK to revert back to home page'),
-                              actions: <Widget>[
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                const SecondScreen()));
-                                    worldShuffle();
-                                    store = [];
-                                  },
-                                  child: const Text('Play Again'),
+                  Opacity(
+                    opacity: button1 ? 1.0 : 0.2,
+                    child: TextButton(
+                      onPressed: () {
+                        if (button1) {
+                          button1Condition();
+                          setState(() {
+                            _controller.state?.controller?.forward();
+                            if (deckList[xy1].number >= deckList[xy].number) {
+                              _counter++;
+                              if (_counter <= 5) {
+                                store.add(deckList[xy1].imgpath);
+                              }
+                            } else {
+                              _counter = 0;
+                              showDialog(
+                                barrierDismissible: false,
+                                context: context,
+                                builder: (BuildContext context) => AlertDialog(
+                                  title: const Text(
+                                      'Owwww.....Not Guessed, Play Again?'),
+                                  content: const Text(
+                                      'Game Over!.....Press OK to revert back to home page'),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const SecondScreen()));
+                                        worldShuffle();
+                                        store = [];
+                                      },
+                                      child: const Text('Play Again'),
+                                    ),
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.popUntil(context, (route) {
+                                          return route.settings.name == "/";
+                                        });
+                                        worldShuffle();
+                                        store = [];
+                                      },
+                                      child: const Text('OK'),
+                                    ),
+                                  ],
                                 ),
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.popUntil(context, (route) {
-                                      return route.settings.name == "/";
-                                    });
-                                    worldShuffle();
-                                    store = [];
-                                  },
-                                  child: const Text('OK'),
-                                ),
-                              ],
-                            ),
-                          );
+                              );
+                            }
+                          });
                         }
-                      });
-                    },
-                    child: const Text(
-                      '>',
-                      style: TextStyle(
-                        fontFamily: 'IndieFlower',
-                        fontSize: 70,
-                        color: Color.fromARGB(255, 0, 255, 8),
-                        fontWeight: FontWeight.bold,
+                      },
+                      child: const Text(
+                        '>',
+                        style: TextStyle(
+                          fontFamily: 'IndieFlower',
+                          fontSize: 70,
+                          color: Color.fromARGB(255, 0, 255, 8),
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
-                  TextButton(
-                    onPressed: () {
-                      setState(() {
-                        _controller.state?.controller?.forward();
-                        if (deckList[xy1].number < deckList[xy].number) {
-                          _counter++;
-                          if (_counter <= 5) {
-                            store.add(deckList[xy1].imgpath);
-                          }
-                        } else {
-                          _counter = 0;
-                          showDialog(
-                            barrierDismissible: false,
-                            context: context,
-                            builder: (BuildContext context) => AlertDialog(
-                              title: const Text(
-                                  'Owwww.....Not Guessed, Play Again?'),
-                              content: const Text(
-                                  'Game Over!.....Press OK to revert back to home page'),
-                              actions: <Widget>[
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                const SecondScreen()));
-                                    worldShuffle();
-                                    store = [];
-                                  },
-                                  child: const Text('Play Again'),
+                  Opacity(
+                    opacity: button2 ? 1.0 : 0.2,
+                    child: TextButton(
+                      onPressed: () {
+                        if (button2) {
+                          button2Condition();
+                          setState(() {
+                            _controller.state?.controller?.forward();
+                            if (deckList[xy1].number < deckList[xy].number) {
+                              _counter++;
+                              if (_counter <= 5) {
+                                store.add(deckList[xy1].imgpath);
+                              }
+                            } else {
+                              _counter = 0;
+                              showDialog(
+                                barrierDismissible: false,
+                                context: context,
+                                builder: (BuildContext context) => AlertDialog(
+                                  title: const Text(
+                                      'Owwww.....Not Guessed, Play Again?'),
+                                  content: const Text(
+                                      'Game Over!.....Press OK to revert back to home page'),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const SecondScreen()));
+                                        worldShuffle();
+                                        store = [];
+                                      },
+                                      child: const Text('Play Again'),
+                                    ),
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.popUntil(context, (route) {
+                                          return route.settings.name == "/";
+                                        });
+                                        worldShuffle();
+                                        store = [];
+                                      },
+                                      child: const Text('OK'),
+                                    ),
+                                  ],
                                 ),
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.popUntil(context, (route) {
-                                      return route.settings.name == "/";
-                                    });
-                                    worldShuffle();
-                                    store = [];
-                                  },
-                                  child: const Text('OK'),
-                                ),
-                              ],
-                            ),
-                          );
+                              );
+                            }
+                          });
                         }
-                      });
-                    },
-                    child: const Text(
-                      '<',
-                      style: TextStyle(
-                        fontFamily: 'IndieFlower',
-                        fontSize: 70,
-                        color: Color.fromARGB(255, 255, 17, 0),
-                        fontWeight: FontWeight.bold,
+                      },
+                      child: const Text(
+                        '<',
+                        style: TextStyle(
+                          fontFamily: 'IndieFlower',
+                          fontSize: 70,
+                          color: Color.fromARGB(255, 255, 17, 0),
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
-                  TextButton(
-                    onPressed: () {
-                      setState(() {
-                        xy++;
-                        xy1++;
-                        _controller.state?.controller?.reset();
-                        if ((_counter == 52)) {
-                          showDialog(
-                            context: context,
-                            barrierDismissible: false,
-                            builder: (BuildContext context) => AlertDialog(
-                              title: const Text('Congratulations!!'),
-                              content: const Text(
-                                  'You guessed all the cards..Press OK to revert back to home page'),
-                              actions: <Widget>[
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                const SecondScreen()));
-                                    worldShuffle();
-                                    store = [];
-                                  },
-                                  child: const Text('Play Again'),
+                  Opacity(
+                    opacity: button3 ? 1.0 : 0.2,
+                    child: TextButton(
+                      onPressed: () {
+                        if (button3) {
+                          button3Condition();
+                          setState(() {
+                            xy++;
+                            xy1++;
+                            _controller.state?.controller?.reset();
+                            if ((_counter == 52)) {
+                              showDialog(
+                                context: context,
+                                barrierDismissible: false,
+                                builder: (BuildContext context) => AlertDialog(
+                                  title: const Text('Congratulations!!'),
+                                  content: const Text(
+                                      'You guessed all the cards..Press OK to revert back to home page'),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const SecondScreen()));
+                                        worldShuffle();
+                                        store = [];
+                                      },
+                                      child: const Text('Play Again'),
+                                    ),
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.popUntil(context, (route) {
+                                          return route.settings.name == "/";
+                                        });
+                                        worldShuffle();
+                                        store = [];
+                                      },
+                                      child: const Text('OK'),
+                                    ),
+                                  ],
                                 ),
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.popUntil(context, (route) {
-                                      return route.settings.name == "/";
-                                    });
-                                    worldShuffle();
-                                    store = [];
-                                  },
-                                  child: const Text('OK'),
-                                ),
-                              ],
-                            ),
-                          );
+                              );
+                            }
+                          });
                         }
-                      });
-                    },
-                    child: const Text(
-                      'N',
-                      style: TextStyle(
-                        fontFamily: 'IndieFlower',
-                        fontSize: 70,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
+                      },
+                      child: const Text(
+                        'N',
+                        style: TextStyle(
+                          fontFamily: 'IndieFlower',
+                          fontSize: 70,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
@@ -307,7 +345,46 @@ class _MobileLandscapeState extends State<MobileLandscape> {
                 children: [
                   TextButton(
                     onPressed: () {
-                      setState(() {});
+                      setState(() {
+                        showDialog(
+                          barrierDismissible: false,
+                          context: context,
+                          builder: (BuildContext context) => AlertDialog(
+                            title: const Text('Five Guessed Cards'),
+                            content: SingleChildScrollView(
+                              child: Column(children: [
+                                SizedBox(
+                                  height: 170,
+                                  width: 450,
+                                  child: ListView.builder(
+                                      itemCount: store.length,
+                                      scrollDirection: Axis.horizontal,
+                                      itemBuilder:
+                                          (BuildContext context, int index) {
+                                        return SizedBox(
+                                          height: 170,
+                                          width: 130,
+                                          child: Center(
+                                            child: Image.asset(
+                                              'assets/images/${store[index]}.png',
+                                            ),
+                                          ),
+                                        );
+                                      }),
+                                )
+                              ]),
+                            ),
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: const Text('OK'),
+                              ),
+                            ],
+                          ),
+                        );
+                      });
                     },
                     child: const Text(
                       'Show 5 Cards',
@@ -331,6 +408,7 @@ class _MobileLandscapeState extends State<MobileLandscape> {
                     onPressed: () {
                       setState(() {
                         worldShuffle();
+                        store = [];
                         Navigator.popUntil(context, (route) {
                           return route.settings.name == "/";
                         });

@@ -52,6 +52,29 @@ class _FlipCardDetailsMobileState extends State<FlipCardDetailsMobile> {
   }
 }
 
+class FlipCardDetailsLandscape extends StatefulWidget {
+  const FlipCardDetailsLandscape({Key? key, required this.imagePath})
+      : super(key: key);
+  final String imagePath;
+
+  @override
+  _FlipCardDetailsLandscapeState createState() =>
+      _FlipCardDetailsLandscapeState();
+}
+
+class _FlipCardDetailsLandscapeState extends State<FlipCardDetailsLandscape> {
+  @override
+  Widget build(BuildContext context) {
+    return Image.asset(
+      widget.imagePath,
+      key: ValueKey<String>(widget.imagePath),
+      height: 240,
+      width: 180,
+      fit: BoxFit.fill,
+    );
+  }
+}
+
 class Suits {
   final int keys;
   final String imgpath;
