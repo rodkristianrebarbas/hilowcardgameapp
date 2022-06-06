@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:hilowcardgameapp/responsivehelper.dart';
 import 'landscapestfulwidget.dart';
 import 'howtoplay.dart';
-import 'mobilelandscape.dart';
+import 'mobilelandscapemode.dart';
+import 'mobileportraitmode.dart';
 
 class Textbutton3 extends StatelessWidget {
   const Textbutton3({
@@ -108,7 +109,8 @@ class SecondScreen extends StatelessWidget {
       body: const SafeArea(
         child: ResponsiveWidget(
           mobile: PortraitORLandscape(),
-          desktop: DesktopMode(),
+          desktopportrait: MobileMode(),
+          desktoplandscape: DesktopMode(),
         ),
       ),
       backgroundColor: Colors.green[200],
@@ -254,6 +256,66 @@ class MobileMod extends StatelessWidget {
   }
 }
 
+class Mobile extends StatelessWidget {
+  const Mobile({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        alignment: Alignment.center,
+        padding: const EdgeInsets.all(5),
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/cardBg.jpg'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Flex(
+          direction: Axis.vertical,
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
+          children: const [
+            Padding(padding: EdgeInsets.all(10)),
+            Flexible(
+              flex: 1,
+              fit: FlexFit.loose,
+              child: Text(
+                'High/Low Card Game',
+                style: TextStyle(
+                  fontFamily: 'IndieFlower',
+                  fontSize: 45,
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromARGB(255, 0, 255, 132),
+                ),
+              ),
+            ),
+            Padding(padding: EdgeInsets.all(5)),
+            Imagewidget(),
+            Flexible(
+              flex: 1,
+              fit: FlexFit.tight,
+              child: Textbutton1(),
+            ),
+            Flexible(
+              flex: 1,
+              fit: FlexFit.tight,
+              child: Textbutton2(),
+            ),
+            Flexible(
+              flex: 1,
+              fit: FlexFit.tight,
+              child: Textbutton3(),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class PortraitORLandscape extends StatefulWidget {
   const PortraitORLandscape({Key? key}) : super(key: key);
 
@@ -272,7 +334,7 @@ class _PortraitORLandscapeState extends State<PortraitORLandscape> {
   }
 
   Widget buildPortrait() => const Scaffold(
-        body: MobileMode(),
+        body: MobilePortrait(),
       );
 
   Widget buildLandscape() => const Scaffold(

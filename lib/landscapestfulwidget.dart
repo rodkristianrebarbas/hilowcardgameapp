@@ -421,6 +421,7 @@ class _DesktopModeState extends State<DesktopMode> {
                                                       "/";
                                                 });
                                                 worldShuffle();
+                                                store = [];
                                               },
                                               child: const Text('OK'),
                                             ),

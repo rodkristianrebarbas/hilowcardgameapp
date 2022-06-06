@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:hilowcardgameapp/responsivehelper.dart';
 import 'responsivehelper.dart';
@@ -17,13 +18,14 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: ResponsiveWidget(
-        mobile: MobileMod(),
-        desktop: DesktopMod(),
+        mobile: Mobile(),
+        desktopportrait: MobileMod(),
+        desktoplandscape: DesktopMod(),
       ),
     );
   }
 }
-/*
+
 class MyCustomScrollBehavior extends MaterialScrollBehavior {
   // Override behavior methods and getters like dragDevices
   @override
@@ -32,15 +34,3 @@ class MyCustomScrollBehavior extends MaterialScrollBehavior {
         PointerDeviceKind.mouse,
       };
 }
-SafeArea(
-        child: ResponsiveWidget(
-          mobile: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              MobileMod(),
-            ],
-          ),
-          desktop: DesktopMod(),
-        ),
-      ),
-*/
