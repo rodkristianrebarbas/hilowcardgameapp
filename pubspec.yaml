@@ -62,8 +62,8 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/card.png
-    - assets/images/playing-card-back.jpg
     - assets/images/cardSlot.png
+    - assets/images/playing-card-back.jpg
     - assets/images/cardBg.jpg
     - assets/images/AS.png
     - assets/images/AH.png
