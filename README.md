@@ -1,8 +1,14 @@
-My first attempt in making HI/LOW Card Game application using Flutter
+//My first attempt in making HI/LOW Card Game application using Flutter
 
-I create web and mobile versions of it using Layout Builder
+//I create web and mobile versions of it using Layout Builder and Orientation Builder
 
-For mobile version, I used Pixel 2 API 25 emulator to execute the app and debugging it
+//For mobile version, I used Pixel 2 API 25 emulator to execute the app and debugging it
+
+//It has four orientation...we have mobile landscape/portrait and web portrait/landscape
+
+//Resizing the web browser causes the game to automatically reset
+
+//Turning the phone in landscape/portrait causes the game to reset too
 
 Feel free to download the source code and study it....enjoy:)
 
